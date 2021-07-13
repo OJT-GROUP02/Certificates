@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#header-text {
+    height: 80px;
+	width: 100%;
+	text-align: center;
+	color: rgb(0, 0, 0);
+	font: 15px Helvetica, Sans-Serif;
+    margin: 0px !important;
+}
+
+.header-color {
+    color: maroon;
+}
+
+.header-img {
+    width: 211px;
+    height: 100px;
+    float: left;
+    position: absolute;
+    top: 0px
+}
+
+#header-iso{
+    height: 80px;
+	width: 100%;
+	text-align: left;
+	color: darkcyan;
+	font: 15px Helvetica, Sans-Serif;
+    margin: 0px !important;
+    padding-left: 55px;
+    padding-top: 30px;
+}
+#body-1{
+    text-align: center;
+    letter-spacing: 8px;
+}
+#body-2{
+    text-align: left;
+    padding-left: 40px;
+}
