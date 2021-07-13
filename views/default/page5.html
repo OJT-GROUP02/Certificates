@@ -5,33 +5,109 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 5</title>
-    <link rel="stylesheet" href="{{=URL('static','css/header.css')}}">
+    <link rel="stylesheet" href="{{=URL('static','css/style_page5.css')}}">
 </head>
 <body>
     <div id="header">
         <div id="header-text">
             <p>Republic of the Philippines</p>
             <p>Bicol University</p>
-            <p class="header-color">{COLLEGE OF EDUCATION}</p>
-            <p class="header-color">{Legazpi City}</p>
-            <p class="header-color">Tel. No (052) 481-5975</p>
+            <p class="header-color"><b>{{=header[0].cci_name.upper()}}</b></p>
+            <p class="header-color">{{=header[0].address}}</p>
+            <p class="header-color">{{=header[0].tel_no}}</p>
         </div>
         <div id="header-img">
-            <img src="{{=URL('static','images/bicol-uni-logo.png')}}" alt="bu_logo" class="header-img">
+            <img src="{{=URL('static','images/bicol-university-logo.png')}}"
+                 alt="bu_logo" class="header-img">
         </div>
         <div id="header-iso">
-            <p>ISO 9001:2008</p>
-            <p style="padding-left: 4px">Certificate No.</p>
-            <p>TUV100 05 1782</p>
+            <p><b>ISO 9001:2008</b></p>
+            <p>Certificate No.</p>
+            <p><b>TUV100 05 1782</b></p>
         </div>
     </div>
 
-    <div id="body">
-        <h1 id="body-1">CERTIFICATION</h1>
-        <br>
-        <br>
-        <br>
-        <h3 id="body-2">TO WHOM IT MAY CONCERN:</h3>
-    </div>  
+    <div id="certification">
+        <h1>CERTIFICATION</h1>
+    </div>
+
+    <div id="salutation">
+        <h3>TO WHOM IT MAY CONCERN:</h3>
+    </div>
+
+    <div id="letter-body">
+        <div id="letter-body-content">
+            <p>This is to certify that</p>
+            {{
+                if student[0].undergrad_stud.gender == 'F':
+                    address = 'Ms.'
+                else:
+                    address = 'Mr.'
+            }}{{pass}}
+            {{if student[0].undergrad_stud.middle_name is not None: }}
+                <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
+                    .undergrad_stud.first_name + ' ' + student[0]\
+                    .undergrad_stud.middle_name[0] + '. ' + student[0]\
+                    .undergrad_stud.last_name}}</b></p>
+            {{else:}}
+                <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
+                    .undergrad_stud.first_name + ' ' + student[0]\
+                    .undergrad_stud.last_name}}</b></p>
+            {{pass}}
+            <p>has graduated with the degree of</p>
+            <p style="color: #c1312c;"><b>{{=student[0].degree_courses\
+            .course_name}}</b></p>
+            <p style="color: #c1312c;">major in {{=student[0].majors\
+            .major}}</p>
+            <p>on</p>
+            <p style="color: #c1312c;">{{=date_graduated}}</p>
+            <p>per</p>
+            <p style="color: #c1312c;">Resolution No. 1, s. 1997</p>
+            <p>of the Board of Regents, Bicol University.</p>
+        </div>
+        <div id="letter-body-content">
+            <p>It is further certified that the Bicol University is a
+                government institution operating under R.A. No. 5521,
+                as amended, whose graduates are <b>not issued
+                    Special Order</b>.</p>
+        </div>
+        <div id="letter-body-content">
+            <p>This certifies finally, that the</p>
+            <p style="color: #c1312c;"><b>{{=student[0].degree_courses.course_name}}</b></p>
+            <p>course is duly approved by the Board of Regents, Bicol
+                University, Legazpi City.</p>
+        </div>
+        <div id="letter-body-content">
+            <p>Issued this</p>
+            <p style="color: #c1312c;">{{=current_day}}</p>
+            <p>day of</p>
+            <p style="color: #c1312c;">{{=current_month_year}}</p>
+            <p>upon request of</p>
+            <p style="color: #c1312c;">{{=address + ' ' + student[0]\
+                .undergrad_stud.last_name}}</p>
+            <p>for reference purposes.</p>
+        </div>
+        <div id="registrar">
+            <p><b>{{=registrar[0].registrar_name.upper()}}</b></p>
+            <p>Registar II</p>
+        </div>
+
+        <div id="noted">
+            <p>Noted:</p>
+
+            <div id="uni-registrar">
+                <p><b>CORAZON N. BAZAR</b></p>
+                <p>University Registrar</p>
+            </div>
+        </div>
+
+        <div id="rev">
+            <h5>Revision: 1</h5>
+        </div>
+        <div id="ureg">
+            <h5>BU-F-UREG-07</h5>
+            <h5>Effectivity Date: Mar. 9, 2011</h5>
+        </div>
+    </div>
 </body>
 </html>

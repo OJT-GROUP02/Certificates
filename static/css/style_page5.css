@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+	padding: 15px 40px 15px 40px;
+    font-family: Helvetica, Sans-Serif;
+	width: 80%;
+	margin: 0 auto;
+}
+
+#header-text {
+    height: 80px;
+	width: 100%;
+	text-align: center;
+	color: rgb(0, 0, 0);
+	font: 15px;
+    margin: 0 !important;
+}
+
+.header-color {
+    color: #c1312c;
+}
+
+.header-img {
+    width: 100px;
+    height: 100px;
+    float: left;
+    position: absolute;
+    top: 10px;
+	padding-left: 20px;
+	/*padding-left: 100px;*/
+    /*padding-top: 10px;*/
+}
+
+#header-iso{
+    color: darkcyan;
+	float: left;
+	text-align: center;
+	padding-top: 30px;
+	padding-left: 8px;
+}
+#certification{
+	padding-top: 120px;
+    text-align: center;
+    letter-spacing: 8px;
+}
+#salutation{
+    text-align: left;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+#letter-body {
+	float: left;
+	width: 100%;
+	height: 60px;
+	font: 15px;
+	padding: 15px 0;
+	margin-bottom: 20px;
+}
+#letter-body-content p {
+	display: inline;
+}
+#letter-body-content {
+	text-indent: 4em;
+	margin-bottom: 20px;
+	text-align: justify;
+	text-justify: inter-word;
+}
+#registrar {
+    width: 300px;
+	margin: 40px 0 40px 0;
+	text-align: center;
+	float: right;
+	color: #c1312c;
+}
+#noted {
+	margin-top: 120px;
+}
+
+#uni-registrar {
+	width: 300px;
+	margin:15px;
+	text-align: center;
+}
+
+#ureg {
+	margin-top: 80px;
+}
+
+#rev {
+	margin-top: 60px;
+	float: right;
+}
