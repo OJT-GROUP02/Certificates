@@ -1,0 +1,45 @@
+b{
+    color: #c1312c;
+}
+
+#line-1{
+    text-align: left;
+    /* padding-left: 80px; */
+    font: 16px Helvetica, Sans-Serif;
+    letter-spacing: 1px;
+    margin-left: 80px;
+}
+
+#line-2{
+    text-align: left;
+    /* padding-left: 80px; */
+    font: 16px Helvetica, Sans-Serif;
+    letter-spacing: 1px;
+    margin-left: 50px;
+}
+
+#registrar-1{
+    text-align: right;
+    margin-right: 100px;
+}
+
+#registrar-2{
+    text-align: right;
+    margin-right: 110px;
+}
+
+#footer {
+    position:absolute;
+    max-width: 980px;
+    text-align: center;
+    bottom:0;
+    margin-left: 50px;
+}
+
+#footer-1{
+    float: left;
+}
+
+#footer-2{
+    margin-left: 650px;
+}
