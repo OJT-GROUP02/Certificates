@@ -1,3 +1,4 @@
+import datetime
 from datetime import datetime as dt
 
 
@@ -85,4 +86,30 @@ def page5():
 
 
 def page6():
+    current_date = str(datetime.datetime.today().strftime('%B %d, %Y'))
+    
+    header = db(db.campus_college_institute.cci_id == 10).select(
+        db.campus_college_institute.cci_name,
+        db.campus_college_institute.address,
+        db.campus_college_institute.tel_no)
+
+    student = db((db.undergrad_stud.first_name == 'Mark Anthony') |
+                 (db.undergrad_stud.last_name == 'Balla')).select(
+        db.undergrad_stud.first_name,
+        db.undergrad_stud.middle_name,
+        db.undergrad_stud.last_name,
+        db.undergrad_stud.gender,
+        db.undergrad_stud.date_graduated,
+        db.degree_courses.course_name,
+        db.degree_courses.course_abbrev,
+        db.majors.major,
+        left=[db.degree_courses.on(db.undergrad_stud.course_id ==
+                                  db.degree_courses.course_id),
+              db.majors.on(db.undergrad_stud.major_id == db.majors.major_id)])
+    
+    registrar = db((db.registrar.registrar_position == 'University Registrar')).select(
+        db.registrar.registrar_position,
+        db.registrar.registrar_name
+        )
+    
     return locals()

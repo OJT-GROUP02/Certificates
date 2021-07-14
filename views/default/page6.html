@@ -1,29 +1,29 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 6</title>
-    <link rel="stylesheet" href="{{=URL('static','css/style_page6.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{=URL('static','css/style_page6.css')}}">
 </head>
 <body>
     
-    <div id="page_wrap">
+    <div class="container">
 
         <div id="header">
             
             <div id="header-text">
                 <p>Republic of the Philippines</p>
                 <p>Bicol University</p>
-                <p>{COLLEGE OF NURSING}</p>
-                <p>{Legazpi City}</p>
-                <p>{Tel No}</p>
-                <p>{Email}</p>
+                <p><b>OFFICE OF THE UNIVERISTY REGISTRAR</b></p>
+                <p>Legazpi City</p>
+                <p>Tel. No. (052) 820-6809</p>
+                <p>e-mail add: bu_uro@yahoo.com</p>
             </div>
             
             <div id="header-img">
-                <img src="{{=URL('static','images/bicol-uni-logo.png')}}" alt="bu_logo" class="header-img">
+                <img src="{{=URL('static','images/bicol-uni-logo.png')}}" 
+                alt="bu_logo" class="header-img">
             </div>
             
             <div id="header-iso">
@@ -32,8 +32,71 @@
                 <p>TUV100 05 1782</p>
             </div>
 
-        </div>
+        </div> <!-- End header -->
 
+        <!--Page contents -->
+        <div id="page-contents">
+            
+            <h6>HONORABLE DISMISSAL</h6>
+            <p class="input-txt" id="date">{{=current_date}}</p>
+            <h4 id="letter-salutation">TO WHOM IT MAY CONCERN:</h4>
+
+            <div id="letter-body-content">
+                <p class="letter-body-p1">This is to certify that</p>
+                 {{ if student[0].undergrad_stud.gender == 'F':
+                    address = 'Ms.'
+                else:
+                    address = 'Mr.'
+                }}
+                {{pass}}
+                
+                {{if student[0].undergrad_stud.middle_name is not None: }}
+                    <p class="input-txt"><b>{{=address + ' ' + student[0]\
+                    .undergrad_stud.first_name + ' ' + student[0]\
+                    .undergrad_stud.middle_name[0] + '. ' + student[0]\
+                    .undergrad_stud.last_name}}</b></p>
+                {{else:}}
+                    <p class="input-txt"><b>{{=address + ' ' + student[0]\
+                    .undergrad_stud.first_name + ' ' + student[0]\
+                    .undergrad_stud.last_name}}</b></p>
+                {{pass}}
+
+                <p>, who graduated with/took up subjects towards the degree of </p>
+                <p class="input-txt"><b>{{=student[0].degree_courses.course_name}}</b></p>
+                <p class="input-txt"><b>({{=student[0].degree_courses.course_abbrev}})</b></p>
+                <p> from Bicol University</p>
+                <p class="input-txt"><b>{{=header[0].cci_name.upper()}}, </b></p>
+                <p class="input-txt"><b>{{=header[0].address}}</b></p>
+                <p>is hereby granted honorable dismissal effective this date.</p>
+            </div> <!--End of paragraph 1 div -->
+        
+            <div id="letter-body-content">
+                <p>His/Her Official Transcript of Record will be forwarded upon request by sending 
+                the lower portion of this honorable dismissal to the college.</p>
+            </div> <!--End of paragraph 2 div -->
+
+            <div id="registrar">
+                <p><b>{{=registrar[0].registrar_name.upper()}}</b></p>
+                <p>{{=registrar[0].registrar_position.title()}}</p>
+            </div>
+
+            <div id="line-divider">
+                <hr size="1" width="100%" color="black">  
+            </div>
+
+            <div id="school-address">
+                <p>______________________________________________</p>
+                <p>__________________________________________</p>
+                <p>_____________________________________</p>
+                <p>(Complete Name of School and Address)</p>
+            </div>
+
+            <div id="date-below">
+                <p>_______________</p>
+                <p>Date</p>
+            </div>
+
+        </div> 
     </div>
     
 </body>

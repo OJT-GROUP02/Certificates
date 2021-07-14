@@ -1,22 +1,29 @@
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0;
 }
 
-#page-wrap {
-	width: 80%;
-	margin: 0 auto;
-	border: 1px solid black;
-	padding: 20px;
+.container {
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid black;
+    padding: 20px;
+    height: 100%;
+}
+
+/*Header*/
+
+#header {
+    height: 80px;
+    width: 100%;
 }
 
 #header-text {
-    height: 80px;
-    width: 100%;
     text-align: center;
     color: rgb(0, 0, 0);
     font: 16px Times New Roman, serif;
-    margin: 0px !important;
+    margin: 0;
 }
 
 .header-img {
@@ -24,7 +31,7 @@
     height: 100px;
     float: left;
     position: absolute;
-    top: 0px
+    top: 5px
 }
 
 #header-iso {
@@ -33,11 +40,109 @@
     width: 200px;
     font: 15px Helvetica, Sans-Serif;
     margin: 0px;
-    padding-top: 30px;
     padding-left: 5px;
 }
 
 #header-iso p {
     color: #83afdf;
     text-align: center;
+}
+
+/*Contents*/
+
+.input-txt {
+    color:  #c1312c;
+}
+
+#page-contents {
+    width: auto;
+    margin-top: 20px;
+    float: left;
+    letter-spacing: 1pt;
+    margin-right: 30px;
+}
+
+#page-contents h6 {
+    font: 20px Times New Roman, serif;
+    text-decoration: underline;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1pt;
+}
+
+#date {
+    text-align: right;
+    padding-top: 20px;
+    margin-left: 50px;
+}
+
+/*document title*/
+h4 {
+    text-align: left;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+
+/*letter body content*/
+
+#letter-body-content {
+    width: auto;
+    margin-left: 50px;
+    margin-top: 20px;
+    text-align: justify;
+    text-indent: 3em;
+    font: 16px Times New Roman, serif;
+}
+
+#letter-body-content p{
+    display: inline;
+}
+
+#registrar{
+    margin-top: 40px;
+    float: right;
+    width: 200px;
+    margin-right: 50px;
+    text-align: center;
+}
+
+#line-divider{
+    margin-top: 100px;
+    width: 100%;
+    margin-right: 0;
+}
+
+#school-address {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+}
+#date_below {
+    width: 30px;
+    float: right
+    text-align: center;
+}
+
+@media print {
+	.container {
+		width: 100%;
+		margin: 0;
+		padding: 0px;
+		border: none;
+	}
+	body {
+		-webkit-print-color-adjust: exact;
+		color-adjust: exact;
+	}
+
+    #header-text {
+        padding-left: 20px;
+        text-align: center;
+    }
+}
+
+@page {
+	size: 8.5in 13in portrait;
+	-webkit-print-color-adjust: exact;
+	color-adjust: exact;
 }
