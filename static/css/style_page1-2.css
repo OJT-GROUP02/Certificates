@@ -4,7 +4,7 @@
 }
 
 body {
-	font: 16px/1.4 "Times New Roman", Times, sans-serif;
+	font: 16px "Times New Roman", Times, sans-serif;
   padding: 0 50px;
 }
 
@@ -59,13 +59,13 @@ body {
 }
 
 #footer1{
-  font-size: 10px;
+  font-size: 11px;
   margin: 100px 50px;
 	float: left;
 }
 
 #footer2{
-	font-size: 10px;
+	font-size: 11px;
 	float: right;
 	margin: 100px 50px;
 }
