@@ -13,8 +13,8 @@
         <div id="header-text">
             <p>Republic of the Philippines</p>
             <p>Bicol University</p>
-            <p><b>{OFFICE OF THE UNIVERSITY REGISTRAR}</b></p>
-            <p>{Legazpi City}</p>
+            <p><b>OFFICE OF THE UNIVERSITY REGISTRAR</b></p>
+            <p>Legazpi City</p>
             <p>Tel No.(052) 820-6809</p>
             <p>E-mail Add: bu_uro@yahoo.com</p>
         </div>
@@ -33,40 +33,57 @@
     <div id="body">
         <div id = "title">
             <p><b>CERTIFICATION</b></p>
-          </div>
+        </div>
       
-          <div id="greetings">
+        <div id="greetings">
             <p id="greetings-txt"><b>TO WHOM IT MAY CONCERN:</b></p>
-          </div>
+        </div>
       
-          <div id="letter-body">
-                  <div id="letter-body-content">
-              <div>
-                <p>This is to certify that</p> 
-                <p><b>{Mr. IRVIN M. SANDIA}</b></p> 
-                <p>has graduated ith the degree of</p> 
-                <p><b>{Bachelor of Science in Nursing (BSN)}</b></p> 
-                <p>from Bicol University, Legazpi City on</p> 
-                <p>{March 24, 2002}</p> 
-                <p>per</p> 
-                <p>{Referendum No. 1, s, 2002}</p> 
-                <p>of the Board of Regents.</p>
-              </div>
+         <div id="letter-body">
+                <div id="letter-body-content">
+                    <div>
+                        <p>This is to certify that</p> 
+                        {{
+                            if student[0].undergrad_stud.gender == 'F':
+                                address = 'Ms.'
+                            else:
+                                address = 'Mr.'
+                        }}{{pass}}
+                        {{if student[0].undergrad_stud.middle_name is not None: }}
+                        <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
+                            .undergrad_stud.first_name + ' ' + student[0]\
+                            .undergrad_stud.middle_name[0] + '. ' + student[0]\
+                            .undergrad_stud.last_name}}</b></p>
+                        {{else:}}
+                        <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
+                            .undergrad_stud.first_name + ' ' + student[0]\
+                            .undergrad_stud.last_name}}</b></p>
+                        {{pass}}
+                        <p>has graduated With the degree of</p> 
+                        <p style="color: #c1312c;"><b>{{=student[0].degree_courses\
+                        .course_name}}</b></p> 
+                        <p>from Bicol University, Legazpi City on</p> 
+                        <p style="color: #c1312c;">{{=date_graduated}}</p> 
+                        <p>per</p> 
+                        <p style="color: #c1312c;">Referendum No. 1, s, 2002</p> 
+                        <p>of the Board of Regents.</p>
+                    </div>
       
-              <div>
-                <p>It is further certified that <b>ENGLISH LANGUAGE</b> is the medium of instruction in all courses and in all Program Levels of Bicol University. Thus, all the academic documents such as Diploma, Transcript of Record, course descriptions, etc. are translated into English language</p>
-              </div>
-      
-              <div>
-                <p>Issued this</p> 
-                <p>{4}<sup>th</sup></p> 
-                <p>day of</p> 
-                <p>{June, 2010}</p> 
-                <p>upon the request of</p> 
-                <p>{Mr. Sandia}</p> 
-                <p>for reference purposes.</p>
-              </div>
-            </div>
+                    <div>
+                        <p>It is further certified that <b>ENGLISH LANGUAGE</b> is the medium of instruction in all courses and in all Program Levels of Bicol University. Thus, all the academic documents such as Diploma, Transcript of Record, course descriptions, etc. are translated into English language</p>
+                    </div>
+            
+                    <div>
+                        <p>Issued this</p>
+                        <p style="color: #c1312c;">{{=current_day}}</p>
+                        <p>day of</p>
+                        <p style="color: #c1312c;">{{=current_month_year}}</p>
+                        <p>upon request of</p>
+                        <p style="color: #c1312c;">{{=address + ' ' + student[0]\
+                            .undergrad_stud.last_name}}</p>
+                        <p>for reference purposes.</p>
+                    </div>
+                </div>
            </div>
       
           <div id="registrar">
