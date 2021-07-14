@@ -5,101 +5,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 1</title>
-    <link rel="stylesheet" href="{{=URL('static','css/header.css')}}">
     <link rel="stylesheet" href="{{=URL('static','css/style_page1-2.css')}}">
 </head>
 <body>
-    <div id="header">
-        <div id="header-text">
-            <p>Republic of the Philippines</p>
-            <p>Bicol University</p>
-            <p><b>{{=header[0].cci_name.upper()}}</b></p>
-            <p>{{=header[0].address}}</p>
-            <p>{{=header[0].tel_no}}</p>
+    <div id="page-wrap">
+        <div id="header">
+            <div id="header-text">
+                <p>Republic of the Philippines</p>
+                <p>Bicol University</p>
+                <p><b>{{=header[0].cci_name.upper()}}</b></p>
+                <p>{{=header[0].address}}</p>
+                <p>{{=header[0].tel_no}}</p>
+            </div>
+
+            <div id="header-img">
+                <img src="{{=URL('static','images/bicol-university-logo.png')}}" alt="bu_logo" class="header-img">
+            </div>
+
+            <div id="header-iso">
+                <p><b>ISO 9001:2008</b></p>
+                <p>Certificate No.</p>
+                <p><b>TUV100 05 1782</b></p>
+            </div>
         </div>
 
-        <div id="header-img">
-            <img src="{{=URL('static','images/bicol-uni-logo.png')}}" alt="bu_logo" class="header-img">
-        </div>
+        <div id="body">
+            <div id = "title">
+                <p><b>CERTIFICATION</b></p>
+            </div>
+        
+            <div id="greetings">
+                <h3 id="greetings-txt"><b>TO WHOM IT MAY CONCERN:</b></h3>
+            </div>
 
-        <div id="header-iso">
-            <p>ISO 9001:2008</p>
-            <p style="padding-left: 4px">Certificate No.</p>
-            <p>TUV100 05 1782</p>
-        </div>
+            <div id="letter-body">
+                <div id="letter-body-content">
+                    <div>
+                        <p style="margin-bottom: 15px;">On the basis of records on file in this Office, this is to certify that</p> 
+                        {{
+                            if student[0].grad_stud.gender == 'F':
+                                address = 'Ms.'
+                            else:
+                                address = 'Mr.'
+                        }}{{pass}}
+                        {{if student[0].grad_stud.middle_name is not None: }}
+                        <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
+                            .grad_stud.first_name.upper() + ' ' + student[0]\
+                            .grad_stud.middle_name[0] + '. ' + student[0]\
+                            .grad_stud.last_name.upper()}}</b></p>
+                        {{else:}}
+                        <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
+                            .grad_stud.first_name + ' ' + student[0]\
+                            .grad_stud.last_name}}</b></p>
+                        {{pass}}
+                        <p>a graduate student of this University, has Completed the Academic Requirements (CAR) for the degree</p> 
+                        <p style="color: #c1312c;"><b>{{=student[0].degree_courses\
+                        .course_name}} ({{=student[0].degree_courses
+                            .course_abbrev}})</b></p>
+                        <p style="color: #c1312c;">major in {{=student[0].majors\
+                        .major}}</p>
+                    </div>
+                    <br>
+                    <div>
+                        <p>Issued this</p>
+                        <p style="color: #c1312c;">{{=current_day}}</p>
+                        <p>day of</p>
+                        <p style="color: #c1312c;">{{=current_month_year}}</p>
+                        <p>upon request of</p>
+                        <p style="color: #c1312c;">{{=address + ' ' + student[0]\
+                            .grad_stud.last_name}}</p>
+                        <p>for reference purposes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="registrar">
+                <div id="registrarII">
+                    <p id="registrar-name"><b>{{=registrar[0].registrar_name.upper()}}</b></p>
+                    <p id="registrar-position">Registrar II</p>
+                </div>
+
+                <p style="float: left; margin-left: 50px;">Noted:</p>
+
+                <div id="univ-registrar" style="height:60px; margin-right:60%;margin-top:60px;">
+                    <p id="registrar-name"><b>{{=registrar[0].registrar_name.upper()}}</b></p>
+                    <p id="registrar-position">University Registrar</p>
+                </div>
+            </div>
+
+            <div id="footer">
+                <div id="footer1">
+                <p><b>BU-F-UREG-04</b></p>
+                <p><b>Effectivity Date: Mar. 9, 2011</b></p>
+            </div>
+                <p id="footer2"><b>Revision: 1</b></p>
+            </div>
+        </div> 
     </div>
-
-    <div id="body">
-        <div id = "title">
-            <p><b>CERTIFICATION</b></p>
-        </div>
-      
-        <div id="greetings">
-            <p id="greetings-txt"><b>TO WHOM IT MAY CONCERN:</b></p>
-        </div>
-
-        <div id="letter-body">
-			<div id="letter-body-content">
-                <div>
-                    <p>On the basis of records on file in this Office, this is to certify that</p> 
-                    {{
-                        if student[0].grad_stud.gender == 'F':
-                            address = 'Ms.'
-                        else:
-                            address = 'Mr.'
-                    }}{{pass}}
-                    {{if student[0].grad_stud.middle_name is not None: }}
-                    <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
-                        .grad_stud.first_name.upper() + ' ' + student[0]\
-                        .grad_stud.middle_name[0] + '. ' + student[0]\
-                        .grad_stud.last_name.upper()}}</b></p>
-                    {{else:}}
-                    <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
-                        .grad_stud.first_name + ' ' + student[0]\
-                        .grad_stud.last_name}}</b></p>
-                    {{pass}}
-                    <p>a graduate student of this University, has Completed the Academic Requirements (CAR) for the degree</p> 
-                    <p style="color: #c1312c;"><b>{{=student[0].degree_courses\
-                    .course_name}} ({{=student[0].degree_courses
-                        .course_abbrev}})</b></p>
-                    <p style="color: #c1312c;">major in {{=student[0].majors\
-                    .major}}</p>
-                </div>
-
-                <div>
-                    <p>Issued this</p>
-                    <p style="color: #c1312c;">{{=current_day}}</p>
-                    <p>day of</p>
-                    <p style="color: #c1312c;">{{=current_month_year}}</p>
-                    <p>upon request of</p>
-                    <p style="color: #c1312c;">{{=address + ' ' + student[0]\
-                        .grad_stud.last_name}}</p>
-                    <p>for reference purposes.</p>
-                </div>
-            </div>
-         </div>
-
-        <div id="registrar">
-            <div id="registrarII">
-                <p id="registrar-name"><b>{{=registrar[0].registrar_name.upper()}}</b></p>
-                <p id="registrar-position">Registrar II</p>
-            </div>
-
-             <p style="float: left; margin-left: 50px;">Noted:</p>
-
-            <div id="univ-registrar" style="height:60px; margin-right:60%;margin-top:60px;">
-                <p id="registrar-name"><b>{{=registrar[0].registrar_name.upper()}}</b></p>
-                <p id="registrar-position">University Registrar</p>
-            </div>
-        </div>
-
-        <div id="footer">
-            <div id="footer1">
-              <p><b>BU-F-UREG-04</b></p>
-              <p><b>Effectivity Date: Mar. 9, 2011</b></p>
-          </div>
-              <p id="footer2"><b>Revision: 1</b></p>
-        </div>
-    </div> 
 </body>
 </html>

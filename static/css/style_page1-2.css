@@ -3,39 +3,75 @@
 	padding: 0;
 }
 
+/*
+#page-wrap{
+	height: 100px;
+	width: 80%;
+	margin: 0 auto;
+	padding: 20px;
+}*/
+
 body {
-	font: 16px "Times New Roman", Times, sans-serif;
-  padding: 0 50px;
+	margin: 10px 40px 0 40px;
+	font: 16px "Times New Roman", sans-serif;
+}
+
+#header-text {
+	height: 80px;
+	width: 100%;
+	text-align: center;
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+	padding-top: 15px;
+}
+
+.header-color {
+	color: #c1312c;
+}
+
+.header-img {
+	width: 100px;
+	height: 100px;
+	float: left;
+	top: 0;
+	position: absolute;
+	padding-left: 50px;
+	padding-top: 10px;
+}
+
+#header-iso{
+	color: darkcyan;
+	float: left;
+	text-align: center;
+	padding-top: 10px;
+	font: 15px Helvetica, Sans-Serif;
+	padding-left: 43px;
 }
 
 #title{
-  font-size: 25px;
-  letter-spacing: 5px;
+	padding-top: 120px;
+	letter-spacing: 8px;
+  font-size: 30px;
   height: 0;
 	width: 100%;
 	text-align: center;
 	color: rgb(0, 0, 0);
   padding: 100px 0;
-  margin-top: 50px;
+	margin-top: 50px;
 }
 
 #greetings {
+	margin-bottom: 20px;
   width: 100%;
 	overflow: hidden;
 	float: left;
-	margin-bottom: 10px;
 	text-align: left;
   margin-left: 50px;
-}
-
-#greetings-txt {
-	height: 30px;
 }
 
 #letter-body{
   width: 100%;
   text-indent: 3em;
-  display: inline;
   text-align: justify;
 }
 
@@ -44,6 +80,7 @@ body {
 }
 
 #letter-body-content p{
+	font-size: 16px;
 	display: inline;
 }
 
@@ -58,24 +95,30 @@ body {
   margin-left: 30%;
 }
 
+#footer{
+	margin-top: 200px;
+}
+
 #footer1{
-  font-size: 11px;
-  margin: 100px 50px;
+	font-family: "Arial Black";
+  font-size: 12px;
+  margin-left: 50px;
 	float: left;
 }
 
 #footer2{
-	font-size: 11px;
+	font-family: "Arial Black";
+	font-size: 12px;
 	float: right;
-	margin: 100px 50px;
+	margin-right: 50px;
 }
 
 @media print {
 	#page-wrap {
 		width: 100%;
 		margin: 0;
-		padding: 0px;
-		border: none;
+		padding: 20px 0;
+		border: none
 	}
 	body {
 		-webkit-print-color-adjust: exact;
