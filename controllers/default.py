@@ -116,8 +116,7 @@ def page5():
         db.campus_college_institute.address,
         db.campus_college_institute.tel_no)
 
-    student = db((db.undergrad_stud.first_name == 'Francia') |
-                 (db.undergrad_stud.last_name == 'Llaban')).select(
+    student = db((db.undergrad_stud.student_id == 3)).select(
         db.undergrad_stud.first_name,
         db.undergrad_stud.middle_name,
         db.undergrad_stud.last_name,
