@@ -58,9 +58,16 @@ body {
   margin-left: 30%;
 }
 
-#footer{
+#footer1{
   font-size: 10px;
   margin: 100px 50px;
+	float: left;
+}
+
+#footer2{
+	font-size: 10px;
+	float: right;
+	margin: 100px 50px;
 }
 
 @media print {
