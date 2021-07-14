@@ -66,7 +66,7 @@
                 <p class="input-txt"><b>({{=student[0].degree_courses.course_abbrev}})</b></p>
                 <p> from Bicol University</p>
                 <p class="input-txt"><b>{{=header[0].cci_name.upper()}}, </b></p>
-                <p class="input-txt"><b>{{=header[0].address}}</b></p>
+                <p class="input-txt">{{=header[0].address}}</b></p>
                 <p>is hereby granted honorable dismissal effective this date.</p>
             </div> <!--End of paragraph 1 div -->
         
@@ -91,11 +91,79 @@
                 <p>(Complete Name of School and Address)</p>
             </div>
 
-            <div id="date-below">
-                <p>_______________</p>
-                <p>Date</p>
+            <div id="date2">
+                <p>__________________</p>
+                <p class="date-label">Date</p>
+            </div>
+            
+            <div id="inside-address">
+                <p class="input-txt">The Registrar</p>
+                <p class="input-txt">BU {{=header[0].cci_name.title()}}</p>
+                <p class="input-txt">{{=header[0].address}}</p>
+                <p id="greetings">Sir/Madam:</p>
             </div>
 
+            <div id="letter-body-2">
+                <p>Mr/Ms</p>
+                {{if student[0].undergrad_stud.middle_name is not None: }}
+                    <p class="input-txt" style="text-decoration: underline;"><b>{{=address + ' ' + student[0]\
+                    .undergrad_stud.first_name + ' ' + student[0]\
+                    .undergrad_stud.middle_name[0] + '. ' + student[0]\
+                    .undergrad_stud.last_name}}</b></p>
+                {{else:}}
+                    <p class="input-txt" style="text-decoration: underline;"><b>{{=address + ' ' + student[0]\
+                    .undergrad_stud.first_name + ' ' + student[0]\
+                    .undergrad_stud.last_name}}</b></p>
+                {{pass}}
+                <p>, who graduated with/took up subjects towards the degree of </p>
+                <p class="input-txt"><b>{{=student[0].degree_courses.course_name}}</b></p>
+                <p class="input-txt"><b>({{=student[0].degree_courses.course_abbrev}})</b></p>
+                <p> from</p>
+                <p class="input-txt"> Bicol University</p>
+                <p class="input-txt"><b>{{=header[0].cci_name.upper()}}, </b></p>
+                <p class="input-txt"><b>{{=header[0].address}}</b></p>
+                <p> is temporarily enrolled in the _____________________________________ pending 
+                    receipt of his/her Official Transcript of Record.</p>
+            </div>
+            <div id="letter-body-2">
+                <p>In connection with this, may I request that his/her Official Transcript of Record
+                be sent to this University/school immediately.</p>
+            </div>
+
+            <div id="requesting-officer">
+                <p>___________________________</p>
+                <p>Requesting Officer</p>
+                <p class="designation-blank">___________________________</p>
+                <p>Designation</p>
+            </div>
+            
+            <div id="student-signature">
+                <p><b><i>Not valid unless the student's signature is affixed below.</i></b></p>
+                <p class="signature-blank">_______________________________________________</p>
+                <p style="text-indent: 3em;"><i>(Signature over printed name of student)</i></p>
+            </div>
+
+            <div id="payment-receipt">
+                <p id="receipt-details">O.R. No.</p>
+                <p id="receipt-details" class="input-txt">123456</p>
+                <p id="receipt-details" style="margin-left: 10px;">Amount: </p>
+                <p id="receipt-details" class="input-txt">P </p>
+                <p id="receipt-details" style="margin-left: 20px;">Date: </p>
+                <p id="receipt-details" class="input-txt">06-16-10</p>
+            </div>
+
+            <div id="last-term">
+                <p id="receipt-details2">Last Term Enrolled: </p>
+                <p id="receipt-details2" class="input-txt">2nd sem eme eme</p>
+            </div>
+            
+            <div id="rev">
+                <p>Revision: 1</p>
+            </div>
+            <div id="ureg">
+                <p>BU-F-UREG-08</p>
+                <p>Effectivity Date: Mar. 9, 2011</p>
+            </div>
         </div> 
     </div>
     

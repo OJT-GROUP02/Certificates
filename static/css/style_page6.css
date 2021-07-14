@@ -9,7 +9,8 @@
     margin: 0 auto;
     border: 1px solid black;
     padding: 20px;
-    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
 }
 
 /*Header*/
@@ -117,10 +118,94 @@ h4 {
     margin-top: 10px;
     text-align: center;
 }
-#date_below {
-    width: 30px;
-    float: right
+
+#date2 {
+    width: 100px;
+    float: right;
+    padding-right: 180px;
+}
+
+.date-label {
     text-align: center;
+    text-indent: 2em;
+}
+
+#inside-address {
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+#greetings{
+    margin-top: 12px;
+}
+
+#letter-body-2 {
+    width: auto;
+    margin-left: 50px;
+    margin-top: 20px;
+    text-align: justify;
+    text-indent: 3em;
+    font: 16px Times New Roman, serif;
+}
+
+#letter-body-2 p{
+    display: inline;
+}
+
+#requesting-officer {
+    margin-top: 15px;
+    width: 240px;
+    float: right;
+    padding-right: 100px;
+}
+
+#requesting-officer p {
+    text-align: center;
+    text-indent: 2em;
+}
+
+.designation-blank {
+    margin-top: 10px;
+}
+
+#student-signature {
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+.signature-blank {
+    margin-top: 20px;
+}
+
+#payment-receipt {
+    margin-left: 50px;
+    margin-top: 25px;
+}
+
+#receipt-details {
+    display: inline;
+}
+
+#receipt-details2 {
+    display: inline;
+}
+
+#last-term {
+    margin-left: 50px;
+    margin-top: 5px;
+}
+
+#ureg {
+	margin-top: 150px;
+	font-size: 12px;
+	font-family: "Arial Black";
+}
+
+#rev {
+	margin-top: 150px;
+	float: right;
+	font-size: 12px;
+	font-family: "Arial Black";
 }
 
 @media print {
@@ -139,6 +224,30 @@ h4 {
         padding-left: 20px;
         text-align: center;
     }
+
+    #date2 {
+        width: 100px;
+        float: right;
+        padding-right: 50px;
+    }
+    
+    .date-label {
+        text-align: center;
+        text-indent: 1em;
+    }
+
+    #requesting-officer {
+        margin-top: 15px;
+        width: 240px;
+        float: right;
+        padding-right: 20px;
+    }
+    
+    #requesting-officer p {
+        text-align: center;
+        text-indent: .5em;
+    }
+    
 }
 
 @page {

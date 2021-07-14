@@ -160,6 +160,15 @@ def page6():
         left=[db.degree_courses.on(db.undergrad_stud.course_id ==
                                    db.degree_courses.course_id),
               db.majors.on(db.undergrad_stud.major_id == db.majors.major_id)])
+                 
+    receipt = db(db.receipt.or_no == 1).select(
+        db.receipt.or_no,
+        db.receipt.date,
+        db.receipt.amount,
+        db.semester.sem,
+        left=[db.semester.on(db.receipt.sem_id == db.semester.sem_id),
+              db.undergrad_stud.on(db.receipt.student_id == db.undergrad_stud.student_id)
+              ])
 
     registrar = db(
         (db.registrar.registrar_position == 'University Registrar')).select(
