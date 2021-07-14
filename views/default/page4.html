@@ -6,32 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 4</title>
     <link rel="stylesheet" href="{{=URL('static','css/header.css')}}">
+    <link rel="stylesheet" href="{{=URL('static','css/style_page4.css')}}">
 </head>
 <body>
-    <div id="header">
-        <div id="header-text">
-            <p>Republic of the Philippines</p>
-            <p>Bicol University</p>
-            <p class="header-color">{COLLEGE OF EDUCATION}</p>
-            <p class="header-color">{Legazpi City}</p>
-            <p class="header-color">Tel. No (052) 481-5975</p>
+    <div id="page-wrap">
+        <div id="header">
+            <div id="header-text">
+                <p>Republic of the Philippines</p>
+                <p>Bicol University</p>
+                <p><strong>OFFICE OF THE UNIVERSITY REGISTRAR</strong></p>
+                <p>Legazpi City</p>
+                <p>Tel. No (052) 820-6809</p>
+            </div>
+            <div id="header-img">
+                <img src="{{=URL('static','images/bicol-uni-logo.png')}}" alt="bu_logo" class="header-img">
+            </div>
+            <div id="header-iso">
+                <p>ISO 9001:2008</p>
+                <p style="padding-left: 4px">Certificate No.</p>
+                <p>TUV100 05 1782</p>
+            </div>
         </div>
-        <div id="header-img">
-            <img src="{{=URL('static','images/bicol-uni-logo.png')}}" alt="bu_logo" class="header-img">
+    
+        <div id="body">
+            <h1 id="body-1">CERTIFICATION</h1>
+            <br>
+            <br>
+            <br>
+            <h3 id="body-2">TO WHOM IT MAY CONCERN:</h3>
+            <br>
+            <br>
+            <br>
+            <p id="line-1">This is to certify that <b>Ms. {{=student[0]\
+                .undergrad_stud.first_name.upper() + ' ' + student[0]\
+                .undergrad_stud.middle_name[0].upper() + '. ' + student[0]\
+                .undergrad_stud.last_name.upper()}}</b> has graduated with the degree
+            <p id="line-2">of <b>{{=student[0].degree_courses.course_name}} ({{=student[0].degree_courses.course_abbrev}}) major in  {{=student[0].majors.major}},</b></p>
+            <p id="line-2"><b>{{=student[0].awards.award_title.upper()}}</b> on <b>{{=date_graduated}}</b> per <b>Resolution No. 1, s. 1997</b>of the Board of Regents,</p>
+            <p id="line-2">Bicol University.</p>
+            <br>
+            <p id="line-1">It is further certified that <b>she</b> is of good moral character and has never been</p>   
+            <p id="line-2">subjected to any disciplinary action during <b>her</b> entire stay in this University.</p>
+            <br>
+            <p id="line-1">Issued this <b>21st</b> day of <b>June, 2010</b> upon the request of <b>Ms. {{=student[0].undergrad_stud.last_name}}</b> for reference</p>
+            <p id="line-2">purposes.</p>
+            <br><br><br><br><br>
+            <p id="registrar-1">{{=registrar[0].registrar_name.upper()}}</p>
+            <p id="registrar-2">University Registrar</p>
         </div>
-        <div id="header-iso">
-            <p>ISO 9001:2008</p>
-            <p style="padding-left: 4px">Certificate No.</p>
-            <p>TUV100 05 1782</p>
+        
+        <div id="footer">
+            <p id="footer-1"><strong>BU-F-UREG-54</strong></p>
+            <p id="footer-2"><strong>Revision: 1</strong></p>
+            <p id="footer-1"><strong>Effectivity Date: Mar. 9,2011</strong></p>
         </div>
     </div>
-
-    <div id="body">
-        <h1 id="body-1">CERTIFICATION</h1>
-        <br>
-        <br>
-        <br>
-        <h3 id="body-2">TO WHOM IT MAY CONCERN:</h3>
-    </div>  
 </body>
 </html>
