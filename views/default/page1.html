@@ -14,8 +14,8 @@
             <p>Republic of the Philippines</p>
             <p>Bicol University</p>
             <p><b>{{=header[0].cci_name.upper()}}</b></p>
-            <p>{Legazpi City}</p>
-            <p>Tel. No.(052) 481-7881</p>
+            <p>{{=header[0].address}}</p>
+            <p>{{=header[0].tel_no}}</p>
         </div>
 
         <div id="header-img">
@@ -50,9 +50,9 @@
                     }}{{pass}}
                     {{if student[0].grad_stud.middle_name is not None: }}
                     <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
-                        .grad_stud.first_name + ' ' + student[0]\
+                        .grad_stud.first_name.upper() + ' ' + student[0]\
                         .grad_stud.middle_name[0] + '. ' + student[0]\
-                        .grad_stud.last_name}}</b></p>
+                        .grad_stud.last_name.upper()}}</b></p>
                     {{else:}}
                     <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
                         .grad_stud.first_name + ' ' + student[0]\
@@ -60,7 +60,8 @@
                     {{pass}}
                     <p>a graduate student of this University, has Completed the Academic Requirements (CAR) for the degree</p> 
                     <p style="color: #c1312c;"><b>{{=student[0].degree_courses\
-                    .course_name}}</b></p>
+                    .course_name}} ({{=student[0].degree_courses
+                        .course_abbrev}})</b></p>
                     <p style="color: #c1312c;">major in {{=student[0].majors\
                     .major}}</p>
                 </div>
