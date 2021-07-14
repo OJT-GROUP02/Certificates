@@ -166,9 +166,13 @@ def page6():
         db.receipt.date,
         db.receipt.amount,
         db.semester.sem,
+        db.semester.acad_year,
         left=[db.semester.on(db.receipt.sem_id == db.semester.sem_id),
               db.undergrad_stud.on(db.receipt.student_id == db.undergrad_stud.student_id)
               ])
+
+    or_no = f'{receipt[0].receipt.or_no:07d}'
+    receipt_date = custom_strftime('%m-%d-%y', receipt[0].receipt.date)
 
     registrar = db(
         (db.registrar.registrar_position == 'University Registrar')).select(

@@ -145,16 +145,18 @@
 
             <div id="payment-receipt">
                 <p id="receipt-details">O.R. No.</p>
-                <p id="receipt-details" class="input-txt">123456</p>
+                <p id="receipt-details" class="input-txt">{{=or_no}}</p>
                 <p id="receipt-details" style="margin-left: 10px;">Amount: </p>
-                <p id="receipt-details" class="input-txt">P </p>
+                <p id="receipt-details" class="input-txt">P{{=receipt[0]\
+                .receipt.amount}}</p>
                 <p id="receipt-details" style="margin-left: 20px;">Date: </p>
-                <p id="receipt-details" class="input-txt">06-16-10</p>
+                <p id="receipt-details" class="input-txt">{{=receipt_date}}</p>
             </div>
 
             <div id="last-term">
                 <p id="receipt-details2">Last Term Enrolled: </p>
-                <p id="receipt-details2" class="input-txt">2nd sem eme eme</p>
+                <p id="receipt-details2" class="input-txt">{{=receipt[0]
+                .semester.sem[:7]}}. SY {{=receipt[0].semester.acad_year}}</p>
             </div>
             
             <div id="rev">
