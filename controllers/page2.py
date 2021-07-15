@@ -16,6 +16,62 @@ def custom_strftime(format_date, t):
     return t.strftime(format_date).replace('{S}', str(t.day) + suffix(t.day))
 
 
+# db connection
+def connect(query):
+    cur = psycopg2.connect(database='newdb', user='postgres',
+                           password='april17', host='localhost',
+                           port="5432").cursor()
+    cur.execute(query)
+    desc = cur.description
+    column_names = [col[0] for col in desc]
+    result = [dict(itertools.zip_longest(column_names, row)) for row in
+              cur.fetchall()]
+    # result = cur.fetchall()
+
+    return result
+
+
+# QUERIES
+
+# fetch student data
+student_query = "SELECT undergrad_stud.first_name, " \
+                "undergrad_stud.middle_name, undergrad_stud.last_name, " \
+                "undergrad_stud.gender, undergrad_stud.date_graduated, " \
+                "degree_courses.course_name, degree_courses.course_abbrev, " \
+                "majors.major FROM undergrad_stud " \
+                "LEFT JOIN degree_courses " \
+                "ON undergrad_stud.course_id = degree_courses.course_id " \
+                "LEFT JOIN majors " \
+                "ON undergrad_stud.major_id = majors.major_id " \
+                "WHERE undergrad_stud.student_id = 1"
+
+student = connect(student_query)
+
+if student[0]["gender"] == 'F':
+    stud_address = "Ms."
+else:
+    stud_address = "Mr."
+
+if student[0]["middle_name"] is not None:
+    student_fullname = f'{stud_address} {student[0]["first_name"].upper()} ' \
+                       f'{student[0]["middle_name"][0].upper()}. ' \
+                       f'{student[0]["last_name"].upper()}'
+else:
+    student_fullname = f'{stud_address} {student[0]["first_name"].upper()} ' \
+                       f'{student[0]["last_name"].upper()}'
+
+stud_address_lastname = f'{stud_address} {student[0]["last_name"]}'
+
+# registrar
+uni_reg_query = "SELECT * FROM registrar " \
+                "WHERE registrar_id = 1"
+uni_registrar = connect(uni_reg_query)
+
+# dates
+current_day = custom_strftime('{S}', dt.now())
+current_month_year = custom_strftime('%B, %Y', dt.now())
+date_graduated = custom_strftime('%B %d, %Y', student[0]["date_graduated"])
+
 # WORKBOOK
 
 wb = Workbook()
@@ -62,7 +118,7 @@ ws['A3'].font = Font(color="c1312c", name='Times New Roman', size=12,
                      bold=True)
 
 #BU Logo
-bu_logo = Image(r"static/images/bicol-university-logo.png")
+bu_logo = Image(r"../static/images/bicol-university-logo.png")
 
 bu_logo.height = 105
 bu_logo.width = 105
@@ -101,10 +157,14 @@ ws.merge_cells('A15:D15')
 ws['A15'].font = Font(bold=True, name='Times New Roman', size=12)
 
 #Letter Body
-ws['A18'].value = "This is to certify that Mr. Irvin M. Sandia has graduated With the degree of"
+ws['A18'].value = f"This is to certify that {student_fullname} has " \
+                  f"graduated with the degree of"
 ws['A18'].alignment = Alignment(horizontal='left', indent=5)
 ws.merge_cells('A18:I18')
-ws['A19'].value = "Bachelor of Science in Nursing (BSN) from Bicol University, Legazpi City on March 24, 2002"
+ws['A19'].value = f"{student[0]['course_name']} " \
+                  f"({student[0]['course_abbrev']}) " \
+                  f"from Bicol University, Legazpi City on " \
+                  f"{date_graduated}"
 ws['A19'].alignment = Alignment(horizontal='left')
 ws.merge_cells('A19:I19')
 ws['A20'].value = "per Referendum No. 1, s, 2002 of the Board of Regents."
@@ -121,7 +181,9 @@ ws['A24'].value = "Diploma, Transcript of Record, course descriptions, etc. are 
 ws['A24'].alignment = Alignment(horizontal='left')
 ws.merge_cells('A24:I24')
 
-ws['A26'].value = "Issued this 14th day of June, 2010 upon the request of Mr. Sandia for reference"
+ws['A26'].value = f"Issued this {current_day} day of {current_month_year} " \
+                  f"upon the request of " \
+                  f"{stud_address_lastname} for reference"
 ws['A26'].alignment = Alignment(horizontal='left', indent=5)
 ws.merge_cells('A26:I26')
 ws['A27'].value = "purposes."
@@ -135,7 +197,7 @@ for row in rows:
         cell.font = font
 
 #Signatories
-ws['F31'].value = "CORAZON N. BAZAR"
+ws['F31'].value = f"{uni_registrar[0]['registrar_name'].upper()}"
 ws['F31'].alignment = Alignment(horizontal='center')
 ws['F31'].font = Font(bold=True, name='Times New Roman', size=12)
 ws.merge_cells('F31:I31')
@@ -159,4 +221,6 @@ ws['H40'].alignment = Alignment(horizontal='right')
 ws['H40'].font = Font(bold=True, size=10)
 ws.merge_cells('H40:I40')
 
-wb.save('static/Certificate_Page2.xlsx')
+# wb.save('static/Certificate_Page2.xlsx')
+wb.save('D:\\Users\\iveej\\Desktop\\web2py\\applications\\Certificates\\static'
+        '\\Certificate_Page2.xlsx')
