@@ -16,6 +16,71 @@ def custom_strftime(format_date, t):
     return t.strftime(format_date).replace('{S}', str(t.day) + suffix(t.day))
 
 
+# db connection
+def connect(query):
+    cur = psycopg2.connect(database='newdb', user='postgres',
+                           password='april17', host='localhost',
+                           port="5432").cursor()
+    cur.execute(query)
+    desc = cur.description
+    column_names = [col[0] for col in desc]
+    result = [dict(itertools.zip_longest(column_names, row)) for row in
+              cur.fetchall()]
+    # result = cur.fetchall()
+
+    return result
+
+
+# QUERIES
+
+# fetch header data
+header_query = "SELECT * FROM campus_college_institute WHERE cci_id = 11"
+header = connect(header_query)
+college_name = header[0]["cci_name"]
+college_name_upper = header[0]["cci_name"].upper()
+college_address = header[0]["address"]
+college_tel_no = header[0]["tel_no"]
+
+# fetch student data
+student_query = "SELECT grad_stud.first_name, " \
+                "grad_stud.middle_name, grad_stud.last_name, " \
+                "grad_stud.gender, degree_courses.course_name, " \
+                "degree_courses.course_abbrev, majors.major FROM grad_stud " \
+                "LEFT JOIN degree_courses " \
+                "ON grad_stud.course_id = degree_courses.course_id " \
+                "LEFT JOIN majors " \
+                "ON grad_stud.major_id = majors.major_id " \
+                "WHERE grad_stud.student_id = 1"
+
+student = connect(student_query)
+
+if student[0]["gender"] == 'F':
+    stud_address = "Ms."
+else:
+    stud_address = "Mr."
+
+if student[0]["middle_name"] is not None:
+    student_fullname = f'{stud_address} {student[0]["first_name"].upper()} ' \
+                       f'{student[0]["middle_name"][0].upper()}. ' \
+                       f'{student[0]["last_name"].upper()}'
+else:
+    student_fullname = f'{stud_address} {student[0]["first_name"].upper()} ' \
+                       f'{student[0]["last_name"].upper()}'
+
+stud_address_lastname = f'{stud_address} {student[0]["last_name"]}'
+
+# registrar
+reg_query = "SELECT * FROM registrar " \
+            "WHERE registrar_id = 4"
+registrar = connect(reg_query)
+uni_reg_query = "SELECT * FROM registrar " \
+                "WHERE registrar_id = 1"
+uni_registrar = connect(uni_reg_query)
+
+# dates
+current_day = custom_strftime('{S}', dt.now())
+current_month_year = custom_strftime('%B, %Y', dt.now())
+
 
 # PAGE 1 WORKBOOK 
 
@@ -37,12 +102,12 @@ ws.append(['Republic of the Philippines'])
 ws.merge_cells('A1:I1')
 ws.append(['Bicol University'])
 ws.merge_cells('A2:I2')
-ws.append(['GRADUATE SCHOOL'])
+ws.append([college_name_upper])
 ws.merge_cells('A3:I3')
 ws['A3'].font = Font(bold=True)
-ws.append(['Legazpi City'])
+ws.append([college_address])
 ws.merge_cells('A4:I4')
-ws.append(['Tel No. (052) 481-7881'])
+ws.append([college_tel_no])
 ws.merge_cells('A5:I5')
 
 rows = ws.iter_cols(min_row=1, min_col=1, max_row=5, max_col=9)
@@ -61,7 +126,7 @@ ws['A3'].font = Font(color="c1312c", name='Times New Roman', size=12,
                      bold=True)
 
 #BU LOGO
-bu_logo = Image(r"static/images/bicol-university-logo.png")
+bu_logo = Image(r"../static/images/bicol-university-logo.png")
 
 bu_logo.height = 105
 bu_logo.width = 105
@@ -99,17 +164,22 @@ ws.merge_cells('A15:D15')
 ws['A15'].font = Font(bold=True, name='Times New Roman', size=12)
 
 #Letter Body
-ws['A18'].value = "On the basis of records on file in this Office, this is to certify that Ms. NOEMI B. LUMBAO,"
+ws['A18'].value = f"On the basis of records on file in this Office, this is " \
+                  f"to certify that {student_fullname},"
 ws['A18'].alignment = Alignment(horizontal='left', indent=2)
 ws.merge_cells('A18:I18')
 ws['A19'].value = "a graduate student of this University, has Completed the Academic Requirements (CAR) for the"
 ws['A19'].alignment = Alignment(horizontal='left')
 ws.merge_cells('A19:I19')
-ws['A20'].value = "degree Master of Arts in Education (MAED), major in Administration and Supervision."
+ws['A20'].value = f"degree {student[0]['course_name']} " \
+                  f"({student[0]['course_abbrev']}), " \
+                  f"major in {student[0]['major']}."
 ws['A20'].alignment = Alignment(horizontal='left')
 ws.merge_cells('A20:I20')
 
-ws['A22'].value = "Issued this 14th day of June, 2010 upon the request of Ms. Lumbao for reference"
+ws['A22'].value = f"Issued this {current_day} day of " \
+                  f"{current_month_year} upon the request of " \
+                  f"{stud_address_lastname} for reference"
 ws['A22'].alignment = Alignment(horizontal='left', indent=2)
 ws.merge_cells('A22:I22')
 ws['A23'].value = "purposes."
@@ -123,7 +193,7 @@ for row in rows:
         cell.font = font
 
 #Signatories
-ws['F27'].value = "CATHERINE D. LAGATA"
+ws['F27'].value = f"{registrar[0]['registrar_name'].upper()}"
 ws['F27'].alignment = Alignment(horizontal='center')
 ws['F27'].font = Font(bold=True, name='Times New Roman', size=12)
 ws.merge_cells('F27:I27')
@@ -137,7 +207,7 @@ ws['A30'].alignment = Alignment(horizontal='left')
 ws['A30'].font = Font(name='Times New Roman', size=12)
 ws.merge_cells('A30:B30')
 
-ws['A32'].value = "CORAZON N. BAZAR"
+ws['A32'].value = f"{uni_registrar[0]['registrar_name'].upper()}"
 ws['A32'].alignment = Alignment(horizontal='center')
 ws['A32'].font = Font(bold=True, name='Times New Roman', size=12)
 ws.merge_cells('A32:D32')
@@ -161,4 +231,6 @@ ws['H40'].alignment = Alignment(horizontal='right')
 ws['H40'].font = Font(bold=True, size=10)
 ws.merge_cells('H40:I40')
 
-wb.save('static/Certificate_Page1.xlsx')
+wb.save('D:\\Users\\iveej\\Desktop\\web2py\\applications\\Certificates\\static'
+        '\\Certificate_Page1.xlsx')
+# wb.save('static/Certificate_Page1.xlsx')

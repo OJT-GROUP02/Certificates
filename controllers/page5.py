@@ -72,10 +72,10 @@ stud_address_lastname = f'{stud_address} {student[0]["last_name"]}'
 
 # registrar
 reg_query = "SELECT * FROM registrar " \
-            "WHERE registrar_position = 'Registrar II'"
+            "WHERE registrar_id = 2"
 registrar = connect(reg_query)
 uni_reg_query = "SELECT * FROM registrar " \
-                "WHERE registrar_position = 'University Registrar'"
+                "WHERE registrar_id = 1"
 uni_registrar = connect(uni_reg_query)
 
 # dates
@@ -96,6 +96,10 @@ ws.page_setup.paperHeight = '13in'
 ws.page_setup.paperWidth = '8.5in'
 ws.page_margins.left = 0.75
 ws.page_margins.right = 0.75
+# ws.page_margins.left = 0.75
+# ws.page_margins.right = 0.1
+ws.page_margins.top = 1
+ws.page_margins.bottom = 1
 
 ws.column_dimensions["I"].width = 14
 
@@ -246,13 +250,13 @@ ws['B38'].font = Font(name='Times New Roman', size=12)
 # BU-F-REG
 ws['A42'].value = 'BU-F-UREG-07'
 ws.merge_cells('A42:B42')
-ws['A42'].font = Font(name='Arial Black', size=10, bold=True)
+ws['A42'].font = Font(name='Arial Black', size=9, bold=True)
 ws['A43'].value = 'Effectivity Date: Mar. 9, 2011'
 ws.merge_cells('A43:C43')
-ws['A43'].font = Font(name='Arial Black', size=10, bold=True)
+ws['A43'].font = Font(name='Arial Black', size=9, bold=True)
 ws['I43'].value = 'Revision: 1'
 ws['I43'].font = Font(name='Arial Black', size=9, bold=True)
 ws['I43'].alignment = Alignment(horizontal='right')
 
 wb.save('D:\\Users\\iveej\\Desktop\\web2py\\applications\\Certificates\\static'
-        '\\Certificates_page_5.xlsx')
+        '\\Certificate_Page_5.xlsx')
