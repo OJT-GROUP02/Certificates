@@ -17,8 +17,8 @@ def custom_strftime(format_date, t):
 
 # db connection
 def connect(query):
-    cur = psycopg2.connect(database='newdb', user='postgres',
-                           password='april17', host='localhost',
+    cur = psycopg2.connect(database='certification_db', user='postgres',
+                           password='1612', host='localhost',
                            port="5432").cursor()
     cur.execute(query)
     desc = cur.description
@@ -62,7 +62,7 @@ stud_address_lastname = f'{stud_address} {student[0]["last_name"]}'
 
 # registrar
 uni_reg_query = "SELECT * FROM registrar " \
-                "WHERE registrar_id = 3"
+                "WHERE registrar_id = 1"
 uni_registrar = connect(uni_reg_query)
 
 # dates
@@ -122,7 +122,7 @@ ws['A3'].font = Font(color="c1312c", name='Times New Roman', size=12,
                      bold=True)
 
 # LOGO
-bu_logo = Image(r"../static/images/bicol-university-logo.png")
+bu_logo = Image(r"static/images/bicol-university-logo.png")
 
 bu_logo.height = 105
 bu_logo.width = 105
@@ -213,4 +213,4 @@ ws['H40'].alignment = Alignment(horizontal='right')
 ws['H40'].font = Font(bold=True, size=10)
 ws.merge_cells('H40:I40')
 
-wb.save('static/Certificate_Page2.xlsx')
+wb.save('static/Certificate_Page3.xlsx')
