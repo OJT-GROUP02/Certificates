@@ -158,7 +158,10 @@ def page5():
     date_graduated = custom_strftime('%B %d, %Y', student[
         0].undergrad_stud.date_graduated)
 
-    registrar = db((db.registrar.registrar_position == 'Registrar II')).select(
+    registrar = db((db.registrar.registrar_id == 2)).select(
+        db.registrar.registrar_name)
+
+    uni_registrar = db((db.registrar.registrar_id == 1)).select(
         db.registrar.registrar_name)
 
     return locals()
