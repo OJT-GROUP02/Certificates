@@ -15,7 +15,66 @@ def suffix(d):
 def custom_strftime(format_date, t):
     return t.strftime(format_date).replace('{S}', str(t.day) + suffix(t.day))
 
+# db connection
+def connect(query):
+    cur = psycopg2.connect(database='newdb', user='postgres',
+                           password='april17', host='localhost',
+                           port="5432").cursor()
+    cur.execute(query)
+    desc = cur.description
+    column_names = [col[0] for col in desc]
+    result = [dict(itertools.zip_longest(column_names, row)) for row in
+              cur.fetchall()]
+    # result = cur.fetchall()
 
+    return result
+
+# QUERIES
+
+# fetch student data
+student_query = "SELECT undergrad_stud.first_name, " \
+                "undergrad_stud.middle_name, undergrad_stud.last_name, " \
+                "undergrad_stud.gender, undergrad_stud.gwa, undergrad_stud.date_graduated, " \
+                "degree_courses.course_name, degree_courses.course_abbrev, " \
+                "majors.major FROM undergrad_stud " \
+                "LEFT JOIN degree_courses " \
+                "ON undergrad_stud.course_id = degree_courses.course_id " \
+                "LEFT JOIN majors " \
+                "ON undergrad_stud.major_id = majors.major_id " \
+                "WHERE undergrad_stud.student_id = 2"
+
+student = connect(student_query)
+
+if student[0]["gender"] == 'F':
+    stud_address = "Ms."
+else:
+    stud_address = "Mr."
+
+if student[0]["middle_name"] is not None:
+    student_fullname = f'{stud_address} {student[0]["first_name"].upper()} ' \
+                       f'{student[0]["middle_name"][0].upper()}. ' \
+                       f'{student[0]["last_name"].upper()}'
+else:
+    student_fullname = f'{stud_address} {student[0]["first_name"].upper()} ' \
+                       f'{student[0]["last_name"].upper()}'
+
+stud_address_lastname = f'{stud_address} {student[0]["last_name"]}'
+
+# registrar
+uni_reg_query = "SELECT * FROM registrar " \
+                "WHERE registrar_id = 3"
+uni_registrar = connect(uni_reg_query)
+
+# dates
+current_day = custom_strftime('{S}', dt.now())
+current_month_year = custom_strftime('%B, %Y', dt.now())
+date_graduated = custom_strftime('%B %d, %Y', student[0]["date_graduated"])
+
+header_query = "SELECT * FROM campus_college_institute WHERE cci_id = 10"
+header = connect(header_query)
+college_name = header[0]["cci_name"].title()
+college_address = header[0]["address"]
+campus= header[0]["campus"]
 
 # PAGE 3  
 
@@ -30,7 +89,7 @@ ws.page_setup.paperWidth = '8.5in'
 ws.page_margins.left = 0.50
 ws.page_margins.rigt = 0.50
 
-ws.column_dimensions["I"].width = 14
+ws.column_dimensions["I"].width = 15
 
 # Heading
 ws.append(['Republic of the Philippines'])
@@ -63,7 +122,7 @@ ws['A3'].font = Font(color="c1312c", name='Times New Roman', size=12,
                      bold=True)
 
 # LOGO
-bu_logo = Image(r"static/images/bicol-university-logo.png")
+bu_logo = Image(r"../static/images/bicol-university-logo.png")
 
 bu_logo.height = 105
 bu_logo.width = 105
@@ -99,29 +158,27 @@ ws.merge_cells('A15:D15')
 ws['A15'].font = Font(bold=True, name='Times New Roman', size=12)
 
 #Letter Body
-ws['A18'].value = "This is to certify that IMEE JANINE O. ABALON has graduated with the degree of Bachelor"
+ws['A18'].value = f"This is to certify that {student_fullname} has graduated with the degree of"
 ws['A18'].alignment = Alignment(horizontal='left', indent=2)
 ws.merge_cells('A18:I18')
-ws['A19'].value = "in Science in Industrial Education (BSIE), major in Food and Service Management from Bicol"
+ws['A19'].value = f"{student[0]['course_name']} ({student[0]['course_abbrev']}), major in {student[0]['major']}"
 ws['A19'].alignment = Alignment(horizontal='left')
 ws.merge_cells('A19:I19')
-ws['A20'].value = "Univeristy College of Industrial Technology, East Campus, Legazpi City on March 28, 2015 per"
+ws['A20'].value = f"from {college_name}, {campus}, {college_address} on {date_graduated}"
 ws['A20'].alignment = Alignment(horizontal='left')
 ws.merge_cells('A20:I20')
-ws['A21'].value = "Board of Regents Referendum No. 02-A, s. 2015 having a General Weighted Average (GWA)"
+ws['A21'].value = f"per Board of Regents Referendum No. 02-A, s. 2015 having a General Weighted Average (GWA)"
 ws['A21'].alignment = Alignment(horizontal='left')
 ws.merge_cells('A21:I21')
-ws['A22'].value = "of 2.01"
+ws['A22'].value = f"of {student[0]['gwa']}"
 ws['A22'].alignment = Alignment(horizontal='left')
 ws.merge_cells('A22:I22')
 
 
-ws['A24'].value = "Issued this 28th day of February, 2017 upon the request of interested party for reference"
+ws['A24'].value = f"Issued this {current_day} day of {current_month_year} upon the request of interested party for reference purposes."
 ws['A24'].alignment = Alignment(horizontal='left', indent=2)
 ws.merge_cells('A24:I24')
-ws['A25'].value = "purposes."
-ws['A25'].alignment = Alignment(horizontal='left')
-ws.merge_cells('A25:I25')
+
 
 font = Font(name='Times New Roman', size=12)
 rows = ws.iter_cols(min_row=18, min_col=1, max_row=25, max_col=9)
@@ -130,11 +187,11 @@ for row in rows:
         cell.font = font
 
 #Signatories
-ws['G30'].value = "SOPHIA A. ROMERO"
+ws['G30'].value = f"{uni_registrar[0]['registrar_name'].upper()}"
 ws['G30'].alignment = Alignment(horizontal='center')
 ws['G30'].font = Font(bold=True, name='Times New Roman', size=12)
 ws.merge_cells('G30:I30')
-ws['G31'].value = "University Registrar"
+ws['G31'].value = f"{uni_registrar[0]['registrar_position']}"
 ws['G31'].alignment = Alignment(horizontal='center')
 ws['G31'].font = Font(name='Times New Roman', size=12)
 ws.merge_cells('G31:I31')
@@ -156,4 +213,4 @@ ws['H40'].alignment = Alignment(horizontal='right')
 ws['H40'].font = Font(bold=True, size=10)
 ws.merge_cells('H40:I40')
 
-wb.save('static/Certificate_Page3.xlsx')
+wb.save('static/Certificate_Page2.xlsx')
