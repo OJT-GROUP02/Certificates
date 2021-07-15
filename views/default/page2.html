@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="{{=URL('static','css/style_page1-2.css')}}">
 </head>
 <body>
-    <div id="page-wrap">
+    <div class="container">
         <div id="header">
             <div id="header-text">
                 <p>Republic of the Philippines</p>
                 <p>Bicol University</p>
-                <p><b>OFFICE OF THE UNIVERSITY REGISTRAR</b></p>
-                <p>Legazpi City</p>
-                <p>Tel No.(052) 820-6809</p>
-                <p>E-mail Add: bu_uro@yahoo.com</p>
+                <p class="header-color"><b>OFFICE OF THE UNIVERSITY REGISTRAR</b></p>
+                <p class="header-color">Legazpi City</p>
+                <p class="header-color">Tel No.(052) 820-6809</p>
+                <p class="header-color">E-mail Add: bu_uro@yahoo.com</p>
             </div>
 
             <div id="header-img">
@@ -31,78 +31,77 @@
             </div>
         </div>
 
-        <div id="body">
-            <div id = "title">
-                <p><b>CERTIFICATION</b></p>
-            </div>
+       
+        <div id = "title">
+            <p><b>CERTIFICATION</b></p>
+       </div>
         
-            <div id="greetings">
-                <h3 id="greetings-txt"><b>TO WHOM IT MAY CONCERN:</b></h3>
-            </div>
+        <div id="greetings">
+            <h3 id="greetings-txt"><b>TO WHOM IT MAY CONCERN:</b></h3>
+        </div>
         
-            <div id="letter-body">
-                    <div id="letter-body-content">
-                        <div>
-                            <p>This is to certify that</p> 
-                            {{
-                                if student[0].undergrad_stud.gender == 'F':
-                                    address = 'Ms.'
-                                else:
-                                    address = 'Mr.'
-                            }}{{pass}}
-                            {{if student[0].undergrad_stud.middle_name is not None: }}
-                            <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
-                                .undergrad_stud.first_name + ' ' + student[0]\
-                                .undergrad_stud.middle_name[0] + '. ' + student[0]\
-                                .undergrad_stud.last_name}}</b></p>
-                            {{else:}}
-                            <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
-                                .undergrad_stud.first_name + ' ' + student[0]\
-                                .undergrad_stud.last_name}}</b></p>
-                            {{pass}}
-                            <p>has graduated With the degree of</p> 
-                            <p style="color: #c1312c;"><b>{{=student[0].degree_courses\
-                            .course_name}} ({{=student[0].degree_courses
-                            .course_abbrev}})</b></p>
-                            <p>from Bicol University, Legazpi City on</p> 
-                            <p style="color: #c1312c;">{{=date_graduated}}</p> 
-                            <p>per</p> 
-                            <p style="color: #c1312c;">Referendum No. 1, s, 2002</p> 
-                            <p>of the Board of Regents.</p>
-                        </div>
-                        <br>
-                        <div>
-                            <p>It is further certified that <b>ENGLISH LANGUAGE</b> is the medium of instruction in all courses and in all Program Levels of Bicol University. Thus, all the academic documents such as Diploma, Transcript of Record, course descriptions, etc. are translated into English language</p>
-                        </div>
-                        <br>
-                        <div>
-                            <p>Issued this</p>
-                            <p style="color: #c1312c;">{{=current_day}}</p>
-                            <p>day of</p>
-                            <p style="color: #c1312c;">{{=current_month_year}}</p>
-                            <p>upon request of</p>
-                            <p style="color: #c1312c;">{{=address + ' ' + student[0]\
-                                .undergrad_stud.last_name}}</p>
-                            <p>for reference purposes.</p>
-                        </div>
-                    </div>
-            </div>
-        
-            <div id="registrar">
-                <div id="univ-registrar" style="margin-left:30%; width:100%; height:60px; margin-top:100px;">
-                <p id="registrar-name"><b>CORAZON N. BAZAR</b></p>
-                <p id="registrar-position">University Registrar</p>
+        <div id="letter-body">
+            <div id="letter-body-content">
+                <div>
+                    <p>This is to certify that</p> 
+                    {{
+                        if student[0].undergrad_stud.gender == 'F':
+                            address = 'Ms.'
+                        else:
+                            address = 'Mr.'
+                     }}{{pass}}
+                    {{if student[0].undergrad_stud.middle_name is not None: }}
+                    <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
+                    .undergrad_stud.first_name + ' ' + student[0]\
+                    .undergrad_stud.middle_name[0] + '. ' + student[0]\
+                    .undergrad_stud.last_name}}</b></p>
+                    {{else:}}
+                    <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
+                    .undergrad_stud.first_name + ' ' + student[0]\
+                    .undergrad_stud.last_name}}</b></p>
+                    {{pass}}
+                    <p>has graduated With the degree of</p> 
+                    <p style="color: #c1312c;"><b>{{=student[0].degree_courses\
+                    .course_name}} ({{=student[0].degree_courses
+                    .course_abbrev}})</b></p>
+                    <p>from Bicol University, Legazpi City on</p> 
+                    <p style="color: #c1312c;">{{=date_graduated}}</p> 
+                    <p>per</p> 
+                    <p style="color: #c1312c;">Referendum No. 1, s, 2002</p> 
+                    <p>of the Board of Regents.</p>
+                </div>
+                <br>
+                <div>
+                    <p>It is further certified that <b>ENGLISH LANGUAGE</b> is the medium of instruction in all courses and in all Program Levels of Bicol University. Thus, all the academic documents such as Diploma, Transcript of Record, course descriptions, etc. are translated into English language</p>
+                </div>
+                <br>
+                <div>
+                    <p>Issued this</p>
+                    <p style="color: #c1312c;">{{=current_day}}</p>
+                    <p>day of</p>
+                    <p style="color: #c1312c;">{{=current_month_year}}</p>
+                    <p>upon request of</p>
+                    <p style="color: #c1312c;">{{=address + ' ' + student[0]\
+                    .undergrad_stud.last_name}}</p>
+                    <p>for reference purposes.</p>
                 </div>
             </div>
+        </div>
         
-            <div id="footer">
-                <div id="footer1">
-                    <p><b>BU-F-UREG-04</b></p>
-                    <p><b>Effectivity Date: Mar. 9, 2011</b></p>
-                </div>
-                    <p id="footer2"><b>Revision: 1</b></p>
+        <div id="registrar">
+            <div id="univ-registrar" style="margin-left:30%; width:100%; height:60px; margin-top:250px;">
+            <p id="registrar-name"><b>CORAZON N. BAZAR</b></p>
+            <p id="registrar-position">University Registrar</p>
             </div>
-        </div>  
+        </div>
+        
+        <div id="footer">
+            <div id="footer1">
+                <p><b>BU-F-UREG-04</b></p>
+                <p><b>Effectivity Date: Mar. 9, 2011</b></p>
+            </div>
+                <p id="footer2"><b>Revision: 1</b></p>
+        </div>
     </div>
 </body>
 </html>
