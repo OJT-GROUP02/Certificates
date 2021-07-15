@@ -346,4 +346,4 @@ ws['I58'].font = footer_font
 ws['I58'].alignment = Alignment(horizontal='right')
 
 
-wb.save('static/Page_6.xlsx')
+wb.save('static/Certificate_Page6.xlsx')
