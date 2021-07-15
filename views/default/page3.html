@@ -61,16 +61,15 @@
                         {{pass}}
                         <p>has graduated With the degree of</p> 
                         <p><b>{{=student[0].degree_courses\
-                        .course_name}} ({{=student[0].degree_courses
-                        .course_abbrev}})</b></p>
-                        <p><b>major in {{=student[0].majors\.major}}</b></p>
+                        .course_name}} ({{=student[0].degree_courses.course_abbrev}})</b></p>
+                        <p><b>major in {{=student[0].majors.major}}</b></p>
                         <p>from Bicol University, Legazpi City on</p> 
                         <p>{{=date_graduated}}</p> 
                         <p>per Board of Regents Referendum No. 02-A, s. 2015</p> 
                         <p>having a</p>
                         <p><b>Genereal Weighted AVERAGE (GWA)</b></p> 
                         <p>of</p>
-                        <p><b>{{=gwa}}</b></p>
+                        <p><b>{{=student[0].undergrad_stud.gwa}}</b></p>
                     </div>
             
                     <div>
