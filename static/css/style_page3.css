@@ -1,0 +1,90 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 16px "Times New Roman", Times, sans-serif;
+  padding: 0 50px;
+}
+
+#title{
+  font-size: 25px;
+  letter-spacing: 5px;
+  height: 0;
+	width: 100%;
+	text-align: center;
+	color: rgb(0, 0, 0);
+  padding: 100px 0;
+  margin-top: 50px;
+}
+
+#greetings {
+  width: 100%;
+	overflow: hidden;
+	float: left;
+	margin-bottom: 10px;
+	text-align: left;
+  margin-left: 50px;
+}
+
+#greetings-txt {
+	height: 30px;
+}
+
+#letter-body{
+  width: 100%;
+  text-indent: 3em;
+  display: inline;
+  text-align: justify;
+}
+
+#letter-body-content{
+  margin: 50px;
+}
+
+#letter-body-content p{
+	display: inline;
+}
+
+#registrar{
+  text-align: center;
+}
+
+#registrarII{
+  width: 100%;
+  height: 60px;
+  margin-top: 100px;
+  margin-left: 30%;
+}
+
+#footer1{
+  font-size: 11px;
+  margin: 100px 50px;
+	float: left;
+}
+
+#footer2{
+	font-size: 11px;
+	float: right;
+	margin: 100px 50px;
+}
+
+@media print {
+	#page-wrap {
+		width: 100%;
+		margin: 0;
+		padding: 0px;
+		border: none;
+	}
+	body {
+		-webkit-print-color-adjust: exact;
+		color-adjust: exact;
+	}
+}
+
+@page {
+	size: 8.5in 13in portrait;
+	-webkit-print-color-adjust: exact;
+	color-adjust: exact;
+}

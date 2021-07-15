@@ -6,26 +6,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 3</title>
     <link rel="stylesheet" href="{{=URL('static','css/header.css')}}">
+    <link rel="stylesheet" href="{{=URL('static','css/style_page3.css')}}">
 </head>
 <body>
     <div id="header">
         <div id="header-text">
             <p>Republic of the Philippines</p>
             <p>Bicol University</p>
-            <p>{OFFICE OF THE UNIVERSITY REGISTRAR}</p>
-            <p>{Legazpi City}</p>
-            <p>Tel. No (052) 480-0700</p>
-            <p>{E-mail add:bu_uro@yahoo.com/bu_uro@bicol-u.edu.ph}</p>
+            <p><b>OFFICE OF THE UNIVERSITY REGISTRAR</b></p>
+            <p>Legazpi City</p>
+            <p>Tel No.(052) 820-6809</p>
+            <p>E-mail Add: bu_uro@yahoo.com</p>
         </div>
+
         <div id="header-img">
             <img src="{{=URL('static','images/bicol-uni-logo.png')}}" alt="bu_logo" class="header-img">
         </div>
+
         <div id="header-iso">
             <p>ISO 9001:2008</p>
             <p style="padding-left: 4px">Certificate No.</p>
             <p>TUV100 05 1782</p>
         </div>
     </div>
+
+    <div id="body">
+        <div id = "title">
+            <p><b>CERTIFICATION</b></p>
+        </div>
+      
+        <div id="greetings">
+            <p id="greetings-txt"><b>TO WHOM IT MAY CONCERN:</b></p>
+        </div>
+      
+         <div id="letter-body">
+                <div id="letter-body-content">
+                    <div>
+                        <p>This is to certify that</p> 
+                        {{
+                            if student[0].undergrad_stud.gender == 'F':
+                                address = 'Ms.'
+                            else:
+                                address = 'Mr.'
+                        }}{{pass}}
+                        {{if student[0].undergrad_stud.middle_name is not None: }}
+                        <p><b>{{=address + ' ' + student[0]\
+                            .undergrad_stud.first_name + ' ' + student[0]\
+                            .undergrad_stud.middle_name[0] + '. ' + student[0]\
+                            .undergrad_stud.last_name}}</b></p>
+                        {{else:}}
+                        <p><b>{{=address + ' ' + student[0]\
+                            .undergrad_stud.first_name + ' ' + student[0]\
+                            .undergrad_stud.last_name}}</b></p>
+                        {{pass}}
+                        <p>has graduated With the degree of</p> 
+                        <p><b>{{=student[0].degree_courses\
+                        .course_name}} ({{=student[0].degree_courses
+                        .course_abbrev}})</b></p>
+                        <p><b>major in {{=student[0].majors\.major}}</b></p>
+                        <p>from Bicol University, Legazpi City on</p> 
+                        <p>{{=date_graduated}}</p> 
+                        <p>per Board of Regents Referendum No. 02-A, s. 2015</p> 
+                        <p>having a</p>
+                        <p><b>Genereal Weighted AVERAGE (GWA)</b></p> 
+                        <p>of</p>
+                        <p><b>{{=gwa}}</b></p>
+                    </div>
+            
+                    <div>
+                        <p>Issued this</p>
+                        <p>{{=current_day}}</p>
+                        <p>day of</p>
+                        <p>{{=current_month_year}}</p>
+                        <p>upon request of interested party for reference purposes.</p>
+                    </div>
+                </div>
+           </div>
+      
+          <div id="registrar">
+            <div id="univ-registrar" style="margin-left:30%; width:100%; height:60px; margin-top:100px;">
+              <p id="registrar-name"><b>SOPHIA A. ROMERO</b></p>
+              <p id="registrar-position">University Registrar</p>
+            </div>
+          </div>
+      
+          <div id="footer">
+              <div id="footer1">
+                <p><b>BU-F-UREG-05</b></p>
+                <p><b>Effectivity Date: Mar. 9, 2011</b></p>
+            </div>
+                <p id="footer2"><b>Revision: 1</b></p>
+          </div>
     </div>  
+
 </body>
 </html>
