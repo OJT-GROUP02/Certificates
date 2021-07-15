@@ -42,20 +42,20 @@ img.height = 105
 ws.add_image(img)
 
 # Header
-ws.append(['Republic of the Philippines'])
-ws.merge_cells('A1:H1')
-ws.append(['Bicol University'])
-ws.merge_cells('A2:H2') 
-ws.append(['OFFICE OF THE UNIVERSITY REGISTRAR'])
-ws.merge_cells('A3:H3')
-ws['A3'].font = Font(name="Times New Roman", size=12, bold=True)
-ws.append(['Legazpi City'])
-ws.merge_cells('A4:H4')
+ws['B1'].value = "Republic of the Philippines"
+ws.merge_cells('B1:F1')
+ws['B2'].value = 'Bicol University'
+ws.merge_cells('B2:F2') 
+ws['B3'].value = 'OFFICE OF THE UNIVERSITY REGISTRAR'
+ws.merge_cells('B3:F3')
+ws['B3'].font = Font(name="Times New Roman", size=12, bold=True)
+ws['B4'].value = 'Legazpi City'
+ws.merge_cells('B4:F4')
 
-ws.append(['Tel. No (052) 820-6809'])
-ws.merge_cells('A5:H5')
-ws.append(['E-mail Add: bu_uro@yahoo.com'])
-ws.merge_cells('A6:H6')
+ws['B5'].value = 'Tel. No (052) 820-6809'
+ws.merge_cells('B5:F5')
+ws['B6'].value ='E-mail Add: bu_uro@yahoo.com'
+ws.merge_cells('B6:F6')
 
 for row in ws.iter_rows():
     for cell in row:
@@ -76,7 +76,7 @@ ws['B9'].font = Font(color = "57C4E5")
 ws['B9'].alignment = Alignment(horizontal='left')
 
 ws['A12'].value = "C E R T I F I C A T I O N"
-ws.merge_cells('A12:H13')
+ws.merge_cells('A12:F13')
 ws['A12'].alignment = Alignment(horizontal='center', vertical='center', wrapText=True)
 ws['A12'].font = Font(size='23', bold=True)
 
@@ -124,35 +124,45 @@ for reg in cur:
 
 # Body
 
+rows = ws.iter_cols(min_row=16, min_col=1, max_row=40, max_col=9)
+for row in rows:
+    for cell in row:
+        cell.font = document_font
+
 # 1st Paragraph
-ws['B18'].value = '         This is to certify that Ms. ' + student_list[2][1].upper() + ' Q. ' + student_list[2][3].upper() + ' has graduated with the degree'
-ws.merge_cells('B18:H18')
-ws['B19'].value = 'of ' + course_list[2][1] + ' (' + course_list[2][2] + ') ' +'major in ' + major_list[2][2] + ','
-ws.merge_cells('B19:H19')
-ws['B20'].value = award_list[2][1] + ' on ' + 'April 03, 1997 per Resolution No. 1, s. 1997 of the Board of Regents,'
-ws.merge_cells('B20:H20')
-ws['B21'].value = 'Bicol University.'
-ws.merge_cells('B21:H21')
+ws['B18'].value = '         This is to certify that Ms. ' + student_list[2][1].upper() + ' Q. ' + student_list[2][3].upper() + ' has graduated with the degree of'
+ws.merge_cells('B18:F18')
+ws['B19'].value =  course_list[2][1] + ' (' + course_list[2][2] + ') ' +'major in ' + major_list[2][2] + ', ' + award_list[2][1]
+ws.merge_cells('B19:F19')
+ws['B20'].value = ' on ' + 'April 03, 1997 per Resolution No. 1, s. 1997 of the Board of Regents, Bicol University.'
+ws.merge_cells('B20:F20')
 
 # 2nd Paragraph
-ws['B23'].value = '         It is further certified that she is of good moral character and has never been'
-ws.merge_cells('B23:H23')
-ws['B24'].value = 'subjected to any disciplinary action during her entire stay in this University.'
-ws.merge_cells('B24:H24')
+ws['B22'].value = '         It is further certified that she is of good moral character and has never been subjected to '
+ws.merge_cells('B23:F23')
+ws['B23'].value = 'any disciplinary action during her entire stay in this University.'
+ws.merge_cells('B24:F24')
 
 # 3rd Paragraph
-ws['B26'].value = '         Issued this 21st day of June, 2010 upon the request of Ms. ' + student_list[2][3] + ' for reference'
-ws.merge_cells('B26:H26')
-ws['B27'].value = 'purposes.'
-ws.merge_cells('B27:H27')
+ws['B25'].value = '         Issued this 21st day of June, 2010 upon the request of Ms. ' + student_list[2][3] + ' for reference purposes.'
+ws.merge_cells('B26:F26')
 
 # Registrar
-ws['F32'].value = reg_list[0][1]
-ws['F33'].value = reg_list[0][2]
+center_align = Alignment(wrap_text=True, horizontal='center', vertical='center')
+bold_font = Font(bold=True, name="Times New Roman", size=12)
+ws['F31'].value = reg_list[0][1].upper()
+ws['F31'].font = bold_font
+ws['F31'].alignment = center_align
+ws['F32'].value = reg_list[0][2]
+ws['F32'].alignment = center_align
 
 # Footer
-ws['B38'].value = 'BU-F-UREG-54'
-ws['G38'].value = 'Revision: 1'
-ws['B39'].value = 'Effectivity Date: Mar. 9,2011'
+footer_font = Font(name="Arial Black", size=9)
+ws['B37'].value = 'BU-F-UREG-54'
+ws['B37'].font = footer_font
+ws['F37'].value = 'Revision: 1'
+ws['F37'].font = footer_font
+ws['B38'].value = 'Effectivity Date: Mar. 9,2011'
+ws['B38'].font = footer_font
 
 wb.save('static/Certificate_Page4.xlsx')
