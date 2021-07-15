@@ -3,6 +3,7 @@ import psycopg2
 import itertools
 
 from operator import itemgetter
+from openpyxl.drawing.image import Image
 from datetime import datetime as dt
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
@@ -15,7 +16,7 @@ from openpyxl.utils.cell import coordinate_from_string, column_index_from_string
 
 wb = Workbook()
 
-wb.create_sheet("Page 4", 3)
+wb.create_sheet("Page 4", 0)
 
 ws = wb["Page 4"]
 ColumnDimension(ws, auto_size=True)
@@ -23,6 +24,7 @@ ws.page_setup.paperHeight = '13in'
 ws.page_setup.paperWidth = '8.5in'
 ws.page_margins.left = 0.50
 ws.page_margins.rigt = 0.50
+document_font = Font(name="Times New Roman", size=12)
 
 # column sizes
 ws.column_dimensions["A"].width = 5
@@ -33,10 +35,10 @@ ws.column_dimensions["E"].width = 12
 ws.column_dimensions["F"].width = 25
 
 # Image
-img = openpyxl.drawing.image.Image('r"static/images/bicol-university-logo.png')
-img.anchor = 'A1'
-img.width = 170
-img.height = 100
+img = Image(r"static/images/bicol-university-logo.png")
+img.anchor = 'B1'
+img.width = 105
+img.height = 105
 ws.add_image(img)
 
 # Header
@@ -46,7 +48,7 @@ ws.append(['Bicol University'])
 ws.merge_cells('A2:H2') 
 ws.append(['OFFICE OF THE UNIVERSITY REGISTRAR'])
 ws.merge_cells('A3:H3')
-ws['A3'].font = Font(bold=True)
+ws['A3'].font = Font(name="Times New Roman", size=12, bold=True)
 ws.append(['Legazpi City'])
 ws.merge_cells('A4:H4')
 
@@ -59,6 +61,7 @@ for row in ws.iter_rows():
     for cell in row:
         cell.alignment = Alignment(
             wrap_text=True, horizontal='center', vertical='center')
+        cell.font = document_font
 
 ws['B7'].value = "ISO 9001:2008"
 ws['B7'].font = Font(color = "57C4E5")
@@ -73,20 +76,20 @@ ws['B9'].font = Font(color = "57C4E5")
 ws['B9'].alignment = Alignment(horizontal='left')
 
 ws['A12'].value = "C E R T I F I C A T I O N"
-ws.merge_cells('A12:H12')
+ws.merge_cells('A12:H13')
 ws['A12'].alignment = Alignment(horizontal='center', vertical='center', wrapText=True)
 ws['A12'].font = Font(size='23', bold=True)
 
 ws['B15'].value = 'TO WHOM IT MAY CONCERN:'
-ws['B15'].font = Font(bold=True)
+ws['B15'].font = Font(name="Times New Roman", size=12, bold=True)
 ws['A15'].alignment = Alignment(horizontal='left')
 
 # End of Header
 
 # Database Connection
 
-cur = psycopg2.connect(database='certificates', user='postgres',
-                        password='1201', host='localhost',
+cur = psycopg2.connect(database='certification_db', user='postgres',
+                        password='1612', host='localhost',
                         port="5432").cursor()
 
 student_list = []
