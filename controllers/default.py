@@ -36,11 +36,10 @@ def page1():
     current_day = custom_strftime('{S}', dt.now())
     current_month_year = custom_strftime('%B, %Y', dt.now())
 
-    registrar = db((db.registrar.registrar_position == 'Registrar II')).select(
+    registrar = db((db.registrar.registrar_id == 4)).select(
         db.registrar.registrar_name)
 
-    registrar = db(
-        (db.registrar.registrar_position == 'University Registrar')).select(
+    uni_registrar = db((db.registrar.registrar_id == 1)).select(
         db.registrar.registrar_name)
 
     return locals()
