@@ -61,7 +61,7 @@ ws['A3'].font = Font(color="c1312c", name='Times New Roman', size=12,
                      bold=True)
 
 #BU LOGO
-bu_logo = Image(r"../static/images/bicol-university-logo.png")
+bu_logo = Image(r"static/images/bicol-university-logo.png")
 
 bu_logo.height = 105
 bu_logo.width = 105
