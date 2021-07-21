@@ -1,10 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{=message}}
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" href="{{=URL('static','css/index.css')}}">
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+		<title>Students</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row header" style="text-align: center; color: #1e90ff">
+				<h3>Undergraduate Students</h3>
+			</div>
+			<table id="table1" class="table table-bordered table-hover table-sm">
+				<thead>
+					<tr>
+						<th>Last Name</th>
+						<th>First Name</th>
+						<th>Middle Name</th>
+						<th>Gender</th>
+						<th>Course</th>
+						<th>Major</th>
+						<th>Date Graduated</th>
+						<th>Certificate</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{for student in ustudents: }}
+					<tr>
+						<td>{{=student.undergrad_stud.last_name}}</td>
+						<td>{{=student.undergrad_stud.first_name}}</td>
+						<td>{{=student.undergrad_stud.middle_name}}</td>
+						<td>{{=student.undergrad_stud.gender}}</td>
+						<td>{{=student.degree_courses.course_name}}</td>
+						<td>{{=student.majors.major}}</td>
+						<td>{{=student.undergrad_stud.date_graduated}}</td>
+						<td>
+							<div class="dropdown">
+                                <button class="dropbtn">Generate Certificate</button>
+                                <div class="dropdown-content">
+                                    <a href="page2.html/{{=student.undergrad_stud.student_id}}" target="_blank">Certificate 1</a>
+                                    <a href="page3.html/{{=student.undergrad_stud.student_id}}" target="_blank">Certificate 2</a>
+                                    <a href="page4.html/{{=student.undergrad_stud.student_id}}" target="_blank">Certificate 3</a>
+                                    <a href="page5.html/{{=student.undergrad_stud.student_id}}" target="_blank">Certificate 4</a>
+                                    <a href="page6.html/{{=student.undergrad_stud.student_id}}" target="_blank">Honorable Dismissal</a>
+                                </div>
+                            </div>
+						</td>
+					</tr>
+					{{pass}}
+				</tbody>
+			</table>
+		</div>
+        <div class="container">
+			<div class="row header" style="text-align: center; color: #1e90ff">
+				<h3>Graduate Students</h3>
+			</div>
+			<table id="table2" class="table table-bordered table-hover table-sm">
+				<thead>
+					<tr>
+						<th>Last Name</th>
+						<th>First Name</th>
+						<th>Middle Name</th>
+						<th>Gender</th>
+						<th>Course</th>
+						<th>Major</th>
+						<th>Certificate</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{for student in gstudents: }}
+					<tr>
+						<td>{{=student.grad_stud.last_name}}</td>
+						<td>{{=student.grad_stud.first_name}}</td>
+						<td>{{=student.grad_stud.middle_name}}</td>
+						<td>{{=student.grad_stud.gender}}</td>
+						<td>{{=student.degree_courses.course_name}}</td>
+						<td>{{=student.majors.major}}</td>
+						<td>
+							<div class="dropdown">
+                                <button class="dropbtn">Generate Certificate</button>
+                                <div class="dropdown-content">
+                                    <a href="page1.html/{{=student.grad_stud.student_id}}" target="_blank">Certificate 1</a>
+                                </div>
+                            </div>
+						</td>
+					</tr>
+					{{pass}}
+				</tbody>
+			</table>
+		</div>
+	</body>
 </html>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#table1").DataTable();
+		$("#table2").DataTable();
+	});
+</script>

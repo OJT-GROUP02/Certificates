@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="{{=URL('static','css/style_page6.css')}}">
 </head>
 <body>
-    
     <div class="container">
 
         <div id="header">
@@ -43,30 +42,12 @@
 
             <div id="letter-body-content">
                 <p class="letter-body-p1">This is to certify that</p>
-                 {{ if student[0].undergrad_stud.gender == 'F':
-                    address = 'Ms.'
-                else:
-                    address = 'Mr.'
-                }}
-                {{pass}}
-                
-                {{if student[0].undergrad_stud.middle_name is not None: }}
-                    <p class="input-txt"><b>{{=address + ' ' + student[0]\
-                    .undergrad_stud.first_name + ' ' + student[0]\
-                    .undergrad_stud.middle_name[0] + '. ' + student[0]\
-                    .undergrad_stud.last_name}}</b></p>
-                {{else:}}
-                    <p class="input-txt"><b>{{=address + ' ' + student[0]\
-                    .undergrad_stud.first_name + ' ' + student[0]\
-                    .undergrad_stud.last_name}}</b></p>
-                {{pass}}
-
+                <p class="input-txt"><b>{{=full_name}}</b></p>
                 <p>, who graduated with/took up subjects towards the degree of </p>
-                <p class="input-txt"><b>{{=student[0].degree_courses.course_name}}</b></p>
-                <p class="input-txt"><b>({{=student[0].degree_courses.course_abbrev}})</b></p>
+                <p class="input-txt"><b>{{=course}}</b></p>
                 <p> from Bicol University</p>
-                <p class="input-txt"><b>{{=header[0].cci_name.upper()}}, </b></p>
-                <p class="input-txt">{{=header[0].address}}</b></p>
+                <p class="input-txt"><b>{{=student[0].campus_college_institute.cci_name.upper()}}, </b></p>
+                <p class="input-txt">{{=student[0].campus_college_institute.address}}</b></p>
                 <p>is hereby granted honorable dismissal effective this date.</p>
             </div> <!--End of paragraph 1 div -->
         
@@ -98,8 +79,8 @@
             
             <div id="inside-address">
                 <p class="input-txt">The Registrar</p>
-                <p class="input-txt">BU {{=header[0].cci_name.title()}}</p>
-                <p class="input-txt">{{=header[0].address}}</p>
+                <p class="input-txt">BU {{=student[0].campus_college_institute.cci_name.title()}}</p>
+                <p class="input-txt">{{=student[0].campus_college_institute.address}}</p>
                 <p id="greetings">Sir/Madam:</p>
             </div>
 
@@ -120,8 +101,8 @@
                 <p class="input-txt"><b>({{=student[0].degree_courses.course_abbrev}})</b></p>
                 <p> from</p>
                 <p class="input-txt"> Bicol University</p>
-                <p class="input-txt"><b>{{=header[0].cci_name.upper()}}, </b></p>
-                <p class="input-txt"><b>{{=header[0].address}}</b></p>
+                <p class="input-txt"><b>{{=student[0].campus_college_institute.cci_name.upper()}}, </b></p>
+                <p class="input-txt"><b>{{=student[0].campus_college_institute.address}}</b></p>
                 <p> is temporarily enrolled in the _____________________________________ pending 
                     receipt of his/her Official Transcript of Record.</p>
             </div>
@@ -147,16 +128,14 @@
                 <p id="receipt-details">O.R. No.</p>
                 <p id="receipt-details" class="input-txt">{{=or_no}}</p>
                 <p id="receipt-details" style="margin-left: 10px;">Amount: </p>
-                <p id="receipt-details" class="input-txt">P{{=receipt[0]\
-                .receipt.amount}}</p>
+                <p id="receipt-details" class="input-txt">P{{=receipt_amount}}</p>
                 <p id="receipt-details" style="margin-left: 20px;">Date: </p>
                 <p id="receipt-details" class="input-txt">{{=receipt_date}}</p>
             </div>
 
             <div id="last-term">
                 <p id="receipt-details2">Last Term Enrolled: </p>
-                <p id="receipt-details2" class="input-txt">{{=receipt[0]
-                .semester.sem[:7]}}. SY {{=receipt[0].semester.acad_year}}</p>
+                <p id="receipt-details2" class="input-txt">{{=last_term_enrolled}}</p>
             </div>
             
             <div id="rev">
@@ -168,7 +147,6 @@
             </div>
         </div> 
     </div>
-    
 </body>
 
 </html>

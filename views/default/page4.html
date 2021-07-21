@@ -32,21 +32,18 @@
             <h3 id="body-2">TO WHOM IT MAY CONCERN:</h3>
         
             <div id="letter-body">
-                <p id="leter-p1">This is to certify that <b>Ms. {{=student[0]\
-                    .undergrad_stud.first_name.upper() + ' ' + student[0]\
-                    .undergrad_stud.middle_name[0].upper() + '. ' + student[0]\
-                    .undergrad_stud.last_name.upper()}}</b> has graduated with the degree
-                <p>of <b>{{=student[0].degree_courses.course_name}} ({{=student[0].degree_courses.course_abbrev}}) major in  {{=student[0].majors.major}},</b></p>   
-                <p><b>{{=student[0].awards.award_title.upper()}}</b> on <b>{{=date_graduated}}</b> per <b>Resolution No. 1, s. 1997</b> of the Board of Regents,</p>
+                <p id="leter-p1">This is to certify that <b>{{=full_name}}</b> has graduated with the degree
+                <p>of <b>{{=course}} major in  {{=major}},</b></p>   
+                <p><b>{{=award}}</b> on <b>{{=date_graduated}}</b> per <b>Resolution No. 1, s. {{=year_graduated}}</b> of the Board of Regents,</p>
                 <p>Bicol University.</p>
-                <p>It is further certified that <b>she</b> is of good moral character and has never been</p>   
-                <p>subjected to any disciplinary action during <b>her</b> entire stay in this University.</p>
-                <p>Issued this <b>21st</b> day of <b>June, 2010</b> upon the request of <b>Ms. {{=student[0].undergrad_stud.last_name}}</b> for reference</p>
+                <p>It is further certified that <b>{{=pronoun_1}}</b> is of good moral character and has never been</p>   
+                <p>subjected to any disciplinary action during <b>{{=pronoun_2}}</b> entire stay in this University.</p>
+                <p>Issued this <b>{{=current_day}}</b> day of <b>{{=current_month_year}}</b> upon the request of <b>{{=address_stud}}</b> for reference</p>
                 <p>purposes.</p>
             </div>
 
             <div id="registrar">
-                <p id="registrar-1">{{=registrar[0].registrar_name.upper()}}</p>
+                <p id="registrar-1">{{=registrar}}</p>
                 <p id="registrar-2">University Registrar</p>
             </div>
 

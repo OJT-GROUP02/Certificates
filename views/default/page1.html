@@ -13,9 +13,9 @@
             <div id="header-text">
                 <p>Republic of the Philippines</p>
                 <p>Bicol University</p>
-                <p class="header-color"><b>{{=header[0].cci_name.upper()}}</b></p>
-                <p class="header-color">{{=header[0].address}}</p>
-                <p class="header-color">{{=header[0].tel_no}}</p>
+                <p class="header-color"><b>{{=student[0].campus_college_institute.cci_name.upper()}}</b></p>
+                <p class="header-color">{{=student[0].campus_college_institute.address}}</p>
+                <p class="header-color">{{=student[0].campus_college_institute.tel_no}}</p>
             </div>
 
             <div id="header-img">
@@ -41,28 +41,10 @@
             <div id="letter-body-content">
                 <div>
                     <p style="margin-bottom: 15px;">On the basis of records on file in this Office, this is to certify that</p> 
-                    {{
-                        if student[0].grad_stud.gender == 'F':
-                            address = 'Ms.'
-                        else:
-                            address = 'Mr.'
-                    }}{{pass}}
-                    {{if student[0].grad_stud.middle_name is not None: }}
-                    <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
-                    .grad_stud.first_name.upper() + ' ' + student[0]\
-                    .grad_stud.middle_name[0] + '. ' + student[0]\
-                    .grad_stud.last_name.upper()}}</b></p>
-                    {{else:}}
-                    <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
-                    .grad_stud.first_name + ' ' + student[0]\
-                    .grad_stud.last_name}}</b></p>
-                    {{pass}}
+                    <p style="color: #c1312c;"><b>{{=full_name}}</b></p>
                     <p>a graduate student of this University, has Completed the Academic Requirements (CAR) for the degree</p> 
-                    <p style="color: #c1312c;"><b>{{=student[0].degree_courses\
-                    .course_name}} ({{=student[0].degree_courses
-                            .course_abbrev}})</b></p>
-                    <p style="color: #c1312c;">major in {{=student[0].majors\
-                    .major}}</p>
+                    <p style="color: #c1312c;"><b>{{=course}}</b></p>
+                    <p style="color: #c1312c;">major in {{=major}}.</p>
                 </div>
                 <br>
                 <div>

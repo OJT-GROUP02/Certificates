@@ -13,9 +13,9 @@
         <div id="header-text">
             <p>Republic of the Philippines</p>
             <p>Bicol University</p>
-            <p class="header-color"><b>{{=header[0].cci_name.upper()}}</b></p>
-            <p class="header-color">{{=header[0].address}}</p>
-            <p class="header-color">{{=header[0].tel_no}}</p>
+            <p class="header-color"><b>{{=student[0].campus_college_institute.cci_name.upper()}}</b></p>
+            <p class="header-color">{{=student[0].campus_college_institute.address}}</p>
+            <p class="header-color">{{=student[0].campus_college_institute.tel_no}}</p>
         </div>
         <div id="header-img">
             <img src="{{=URL('static','images/bicol-university-logo.png')}}"
@@ -39,32 +39,15 @@
     <div id="letter-body">
         <div id="letter-body-content">
             <p>This is to certify that</p>
-            {{
-                if student[0].undergrad_stud.gender == 'F':
-                    address = 'Ms.'
-                else:
-                    address = 'Mr.'
-            }}{{pass}}
-            {{if student[0].undergrad_stud.middle_name is not None: }}
-                <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
-                    .undergrad_stud.first_name.upper() + ' ' + student[0]\
-                    .undergrad_stud.middle_name[0] + '. ' + student[0]\
-                    .undergrad_stud.last_name.upper()}}</b></p>
-            {{else:}}
-                <p style="color: #c1312c;"><b>{{=address + ' ' + student[0]\
-                    .undergrad_stud.first_name + ' ' + student[0]\
-                    .undergrad_stud.last_name}}</b></p>
-            {{pass}}
+            <p style="color: #c1312c;"><b>{{=full_name}}</b></p>
             <p>has graduated with the degree of</p>
-            <p style="color: #c1312c;"><b>{{=student[0].degree_courses\
-            .course_name}} ({{=student[0].degree_courses.course_abbrev}})
+            <p style="color: #c1312c;"><b>{{=course}}
             </b></p>
-            <p style="color: #c1312c;">major in {{=student[0].majors\
-            .major}}</p>
+            <p style="color: #c1312c;">major in {{=major}}</p>
             <p>on</p>
             <p style="color: #c1312c;">{{=date_graduated}}</p>
             <p>per</p>
-            <p style="color: #c1312c;">Resolution No. 1, s. 1997</p>
+            <p style="color: #c1312c;">Resolution No. 1, s. {{=year_graduated}}</p>
             <p>of the Board of Regents, Bicol University.</p>
         </div>
         <div id="letter-body-content">
@@ -85,8 +68,7 @@
             <p>day of</p>
             <p style="color: #c1312c;">{{=current_month_year}}</p>
             <p>upon the request of</p>
-            <p style="color: #c1312c;">{{=address + ' ' + student[0]\
-                .undergrad_stud.last_name}}</p>
+            <p style="color: #c1312c;">{{=address_stud}}</p>
             <p>for reference purposes.</p>
         </div>
         <div id="registrar">

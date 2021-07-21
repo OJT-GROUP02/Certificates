@@ -1,10 +1,10 @@
 # ivee
-#db = DAL('postgres://postgres:april17@localhost/newdb')
+db = DAL('postgres://postgres:0417@localhost/certdb')
 
-#maedel
-db = DAL('postgres://postgres:1612@localhost/certification_db')
+# maedel
+# db = DAL('postgres://postgres:1612@localhost/certification_db')
 
-#vega
+# vega
 # db = DAL('postgres://postgres:postgres@localhost/certificate')
 
 db.define_table('awards',
