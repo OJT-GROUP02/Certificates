@@ -46,8 +46,8 @@
                 <p>, who graduated with/took up subjects towards the degree of </p>
                 <p class="input-txt"><b>{{=course}}</b></p>
                 <p> from Bicol University</p>
-                <p class="input-txt"><b>{{=student[0].campus_college_institute.cci_name.upper()}}, </b></p>
-                <p class="input-txt">{{=student[0].campus_college_institute.address}}</b></p>
+                <p class="input-txt"><b>{{=college_name.upper()}}, </b></p>
+                <p class="input-txt">{{=college_address}}</b></p>
                 <p>is hereby granted honorable dismissal effective this date.</p>
             </div> <!--End of paragraph 1 div -->
         
@@ -57,8 +57,8 @@
             </div> <!--End of paragraph 2 div -->
 
             <div id="registrar">
-                <p><b>{{=registrar[0].registrar_name.upper()}}</b></p>
-                <p>{{=registrar[0].registrar_position.title()}}</p>
+                <p><b>{{=uni_registrar[0].registrar_name.upper()}}</b></p>
+                <p>{{=uni_registrar[0].registrar_position.title()}}</p>
             </div>
 
             <div id="line-divider">
@@ -79,8 +79,8 @@
             
             <div id="inside-address">
                 <p class="input-txt">The Registrar</p>
-                <p class="input-txt">BU {{=student[0].campus_college_institute.cci_name.title()}}</p>
-                <p class="input-txt">{{=student[0].campus_college_institute.address}}</p>
+                <p class="input-txt">BU {{=college_name.title()}}</p>
+                <p class="input-txt">{{=college_address}}</p>
                 <p id="greetings">Sir/Madam:</p>
             </div>
 
@@ -101,8 +101,8 @@
                 <p class="input-txt"><b>({{=student[0].degree_courses.course_abbrev}})</b></p>
                 <p> from</p>
                 <p class="input-txt"> Bicol University</p>
-                <p class="input-txt"><b>{{=student[0].campus_college_institute.cci_name.upper()}}, </b></p>
-                <p class="input-txt"><b>{{=student[0].campus_college_institute.address}}</b></p>
+                <p class="input-txt"><b>{{=college_name.upper()}}, </b></p>
+                <p class="input-txt"><b>{{=college_address}}</b></p>
                 <p> is temporarily enrolled in the _____________________________________ pending 
                     receipt of his/her Official Transcript of Record.</p>
             </div>

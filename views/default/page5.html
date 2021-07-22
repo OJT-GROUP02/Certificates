@@ -13,9 +13,9 @@
         <div id="header-text">
             <p>Republic of the Philippines</p>
             <p>Bicol University</p>
-            <p class="header-color"><b>{{=student[0].campus_college_institute.cci_name.upper()}}</b></p>
-            <p class="header-color">{{=student[0].campus_college_institute.address}}</p>
-            <p class="header-color">{{=student[0].campus_college_institute.tel_no}}</p>
+            <p class="header-color"><b>{{=college_name}}</b></p>
+            <p class="header-color">{{=college_address}}</p>
+            <p class="header-color">{{=college_tel_no}}</p>
         </div>
         <div id="header-img">
             <img src="{{=URL('static','images/bicol-university-logo.png')}}"
@@ -72,7 +72,7 @@
             <p>for reference purposes.</p>
         </div>
         <div id="registrar">
-            <p><b>{{=registrar[0].registrar_name.upper()}}</b></p>
+            <p><b>{{=registrar_II.upper()}}</b></p>
             <p>Registar II</p>
         </div>
 

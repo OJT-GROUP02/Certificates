@@ -41,13 +41,24 @@
 						<td>{{=student.undergrad_stud.date_graduated}}</td>
 						<td>
 							<div class="dropdown">
-                                <button class="dropbtn">Generate Certificate</button>
+                                <button class="dropbtn">View
+                                    Certificate</button>
                                 <div class="dropdown-content">
                                     <a href="page2.html/{{=student.undergrad_stud.student_id}}" target="_blank">Certificate 1</a>
                                     <a href="page3.html/{{=student.undergrad_stud.student_id}}" target="_blank">Certificate 2</a>
                                     <a href="page4.html/{{=student.undergrad_stud.student_id}}" target="_blank">Certificate 3</a>
                                     <a href="page5.html/{{=student.undergrad_stud.student_id}}" target="_blank">Certificate 4</a>
                                     <a href="page6.html/{{=student.undergrad_stud.student_id}}" target="_blank">Honorable Dismissal</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="dropbtn">Download</button>
+                                <div class="dropdown-content">
+                                    <a href="page2.html/{{=student.undergrad_stud.student_id}}/download" target="_blank">Certificate 1</a>
+                                    <a href="page3.html/{{=student.undergrad_stud.student_id}}/download" target="_blank">Certificate 2</a>
+                                    <a href="page4.html/{{=student.undergrad_stud.student_id}}/download" target="_blank">Certificate 3</a>
+                                    <a href="page5.html/{{=student.undergrad_stud.student_id}}/download" target="_blank">Certificate 4</a>
+                                    <a href="page6.html/{{=student.undergrad_stud.student_id}}/download" target="_blank">Honorable Dismissal</a>
                                 </div>
                             </div>
 						</td>
@@ -83,9 +94,16 @@
 						<td>{{=student.majors.major}}</td>
 						<td>
 							<div class="dropdown">
-                                <button class="dropbtn">Generate Certificate</button>
+                                <button class="dropbtn">View
+                                    Certificate</button>
                                 <div class="dropdown-content">
                                     <a href="page1.html/{{=student.grad_stud.student_id}}" target="_blank">Certificate 1</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="dropbtn">Download</button>
+                                <div class="dropdown-content">
+                                    <a href="page1.html/{{=student.grad_stud.student_id}}/download" target="_blank">Certificate 1</a>
                                 </div>
                             </div>
 						</td>
