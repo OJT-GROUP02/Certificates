@@ -33,6 +33,7 @@ db.define_table('registrar',
                 Field('registrar_id'),
                 Field('registrar_name'),
                 Field('registrar_position'),
+                Field('college_id'),
                 migrate=False
                 )
 
